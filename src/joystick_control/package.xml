@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package>
+  <name>joystick_control</name>
+  <version>0.0.0</version>
+  <description>The joystick_control package</description>
+
+      <!-- One maintainer tag required, multiple allowed, one person per tag --> 
+    <maintainer email="oriolorraserra@gmail.com">Oriol Orra Serra</maintainer>
+
+    <!-- One license tag required, multiple allowed, one license per tag -->
+    <license>BSD</license>
+
+    <!-- Url tags are optional, but mutiple are allowed, one per tag -->
+    <url type="website"></url>
+
+    <!-- Author tags are optional, mutiple are allowed, one per tag -->
+    <author email="oriolorraserra@gmail.com">Oriol Orra Serra</author>
+
+    <!-- The *_depend tags are used to specify dependencies -->
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <build_depend>roscpp</build_depend>
+    <build_depend>rospy</build_depend>
+    <build_depend>std_msgs</build_depend>
+    <build_depend>sensor_msgs</build_depend>
+    
+    <run_depend>roscpp</run_depend>
+    <run_depend>rospy</run_depend>
+    <run_depend>std_msgs</run_depend>
+    <run_depend>sensor_msgs</run_depend>
+  
+</package>
