@@ -29,14 +29,14 @@ void VelocityControlNode::joyCallback(const sensor_msgs::Joy::ConstPtr& joy_msg)
     else vel1_.data = 0.0;
 
 
-    ROS_INFO_STREAM ("Motor 1 Velocity: " <<  vel1_.data);
+    ROS_INFO_STREAM ("Motor 1 Velocity:  " <<  vel1_.data);
 
     vel1Publish();
 }
 
 void VelocityControlNode::Encoder1Callback(const std_msgs::Int32ConstPtr &encoder_msg){
 
-    ROS_INFO_STREAM ("ENCODER MOTOR 1" << encoder_msg->data);
+    ROS_INFO_STREAM ("ENCODER MOTOR 1:  " << encoder_msg->data);
 }
 
 
