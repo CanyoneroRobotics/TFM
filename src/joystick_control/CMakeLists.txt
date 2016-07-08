@@ -16,8 +16,17 @@ catkin_package(
   CATKIN_DEPENDS std_msgs roscpp rospy sensor_msgs
 )
 
+#source files
+SET(SRCS 
+      src/velocity_control.cpp
+      src/velocity_control_double.cpp)
 
-add_executable(joystick_control src/velocity_control.cpp)
-add_dependencies(joystick_control ${catkin_EXPORTED_TARGETS})
-target_link_libraries(joystick_control ${catkin_LIBRARIES})
+
+add_executable(joystick_control_simple src/velocity_control.cpp)
+add_dependencies(joystick_control_simple ${catkin_EXPORTED_TARGETS})
+target_link_libraries(joystick_control_simple ${catkin_LIBRARIES})
+
+add_executable(joystick_control_double src/velocity_control_double.cpp)
+add_dependencies(joystick_control_double ${catkin_EXPORTED_TARGETS})
+target_link_libraries(joystick_control_double ${catkin_LIBRARIES})
 

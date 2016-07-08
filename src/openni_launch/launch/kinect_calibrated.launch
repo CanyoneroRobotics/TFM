@@ -7,6 +7,6 @@
         value="package://openni_launch/kinect_calibration/rgb_A00365A06777051A.yaml" />
    <arg name="depth_camera_info_url"
         value="package://openni_launch/kinect_calibration/depth_A00365A06777051A.yaml" />
+   <arg name="depth_registration" default="true" />
  </include>
-
 </launch>
