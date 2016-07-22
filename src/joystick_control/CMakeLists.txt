@@ -4,6 +4,7 @@ project(joystick_control)
 find_package( catkin REQUIRED COMPONENTS 
       roscpp
       rospy
+      tf
       std_msgs
       sensor_msgs)
 
@@ -13,7 +14,7 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 
 catkin_package(
   LIBRARIES 
-  CATKIN_DEPENDS std_msgs roscpp rospy sensor_msgs
+  CATKIN_DEPENDS std_msgs roscpp rospy sensor_msgs tf
 )
 
 #source files

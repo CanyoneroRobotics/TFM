@@ -11,8 +11,8 @@
 #include <sensor_msgs/Joy.h>
 #include <std_msgs/Int32.h>
 #include <std_msgs/Int32MultiArray.h>
-
-
+#include <nav_msgs/Odometry.h>
+#include <tf/transform_broadcaster.h>
 
 class VelocityControlNode {
  public:
@@ -26,9 +26,26 @@ class VelocityControlNode {
   std_msgs::Float32 vel1_;
   std_msgs::Float32 vel2_;
 
-  int encodersValue[2];
+  //Wheel Odom
+  nav_msgs::Odometry wheelOdomMsg;
+  tf::TransformBroadcaster odom_broadcaster;
+  ros::Publisher odom_pub_;
 
-  bool isDouble_;
+  ros::Time current_time, last_time;
+
+  double x;
+  double y;
+  double th;
+
+  double vx;
+  double vy;
+  double vth;
+
+
+  //Encoders
+  int encodersValue[2], lastEncodersValue[2];
+
+  bool isDouble_, isEncoder1_, isEncoder2_;
 
  private:
 
@@ -37,6 +54,8 @@ class VelocityControlNode {
 
   ros::Subscriber encoder1_sub_;
   ros::Subscriber encoder2_sub_;
+
+  //publishers
   ros::Publisher vel1_pub_;
   ros::Publisher vel2_pub_;
 
