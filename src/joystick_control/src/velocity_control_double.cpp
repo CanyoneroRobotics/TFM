@@ -35,8 +35,8 @@ VelocityControlNode::VelocityControlNode(){
     encoder2_sub_ = nh.subscribe("/motor2_encoder", 1, &VelocityControlNode::Encoder2Callback, this);
     vel2_pub_ = nh.advertise<std_msgs::Float32>("/motor2_vel", 10);
 
-    //Odom
-    odom_pub_ = nh.advertise<nav_msgs::Odometry>("odom", 50);
+    //Odomtry publisher
+    odom_pub_ = nh.advertise<nav_msgs::Odometry>("/odometry", 25);
 }
 
 VelocityControlNode::~VelocityControlNode(){ }
@@ -148,15 +148,21 @@ int main(int argc, char** argv) {
           //compute wheels velocity and angular velocity
           double v1 = (((velocity_node.encodersValue[0]-velocity_node.lastEncodersValue[0])*TICK)/dt);
           double v2 = (((velocity_node.encodersValue[1]-velocity_node.lastEncodersValue[1])*TICK)/dt);
+
+          //compute velocity center
           double vth = ((v1-v2)/DISTANCEWHEELS);
+          double v = (v1+v2)/2;
 
           //compute linear velocities & odometry
           double delta_th = vth * dt;
-          double vx = v1*cos(velocity_node.th) + v2*cos(velocity_node.th);
-          double vy = v1*sin(velocity_node.th) + v2*sin(velocity_node.th);
+          double vx = v*cos(velocity_node.th);
+          double vy = v*sin(velocity_node.th);
 
-          double delta_x = (vx * cos(velocity_node.th) - vy * sin(velocity_node.th)) * dt;
-          double delta_y = (vx * sin(velocity_node.th) + vy * cos(velocity_node.th)) * dt;
+          //double delta_x = (vx * cos(velocity_node.th) - vy * sin(velocity_node.th)) * dt;
+          //double delta_y = (vx * sin(velocity_node.th) + vy * cos(velocity_node.th)) * dt;
+
+          double delta_x = vx * dt;
+          double delta_y = vy * dt;
 
           velocity_node.x += delta_x;
           velocity_node.y += delta_y;
