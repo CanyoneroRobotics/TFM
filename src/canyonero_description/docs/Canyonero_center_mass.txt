@@ -1,0 +1,35 @@
+Canyonero v32
+Area	4,421E+06 mm^2
+Density	0.002 g / mm^3
+Mass	1,523E+04 g
+Volume	6,777E+06 mm^3
+Physical Material	(Various)
+
+Bounding Box
+Length 	 618.00 mm
+Width 	 350.513 mm
+Height 	 606.005 mm
+World X,Y,Z	0 mm, 0 mm, 0 mm
+Center of Mass	174.84 mm, 117.513 mm, -216.863 mm
+
+Moment of Inertia at Center of Mass   (g mm^2)
+	Ixx = 5,419E+08
+	Ixy = -3,645E+05
+	Ixz = 1,078E+06
+	Iyx = -3,645E+05
+	Iyy = 9,727E+08
+	Iyz = 2,146E+07
+	Izx = 1,078E+06
+	Izy = 2,146E+07
+	Izz = 5,319E+08
+
+Moment of Inertia at Origin   (g mm^2)
+	Ixx = 1,469E+09
+	Ixy = -3,133E+08
+	Ixz = 5,786E+08
+	Iyx = -3,133E+08
+	Iyy = 2,155E+09
+	Iyz = 4,096E+08
+	Izx = 5,786E+08
+	Izy = 4,096E+08
+	Izz = 1,208E+09

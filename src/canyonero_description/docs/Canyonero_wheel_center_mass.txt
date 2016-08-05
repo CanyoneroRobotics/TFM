@@ -1,0 +1,35 @@
+Sistema_motriu_2 v37
+Area	2,858E+05 mm^2
+Density	0.002 g / mm^3
+Mass	1419.489 g
+Volume	5,837E+05 mm^3
+Physical Material	(Various)
+
+Bounding Box
+Length 	 264.00 mm
+Width 	 199.546 mm
+Height 	 199.546 mm
+World X,Y,Z	0 mm, 0 mm, 0 mm
+Center of Mass	40.5048 mm, 38.6583 mm, -54.9835 mm
+
+Moment of Inertia at Center of Mass   (g mm^2)
+	Ixx = 3,305E+06
+	Ixy = 4,792E+04
+	Ixz = -2237.53
+	Iyx = 4,792E+04
+	Iyy = 1,122E+07
+	Iyz = -99.194
+	Izx = -2237.53
+	Izy = -99.194
+	Izz = 1,121E+07
+
+Moment of Inertia at Origin   (g mm^2)
+	Ixx = 9,717E+06
+	Ixy = -2,175E+06
+	Ixz = 3,159E+06
+	Iyx = -2,175E+06
+	Iyy = 1,784E+07
+	Iyz = 3,017E+06
+	Izx = 3,159E+06
+	Izy = 3,017E+06
+	Izz = 1,566E+07
