@@ -1,0 +1,19 @@
+<launch>
+
+  <!-- Load your robot -->
+  <arg name="robot" default="canyonero"/>
+
+  <param name="robot_description" textfile="$(find canyonero_description)/urdf/canyonero2.urdf" />	
+
+	<!-- Send gui-ed joint values -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="TRUE"/>
+  </node>
+
+  <!-- Build your robot tf tree -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find canyonero_description)/config/show.rviz"/>
+
+</launch>
