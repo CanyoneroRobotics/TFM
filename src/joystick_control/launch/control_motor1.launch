@@ -1,5 +1,0 @@
-<launch>
-
-  <node pkg="joystick_control" name="joystick_control" type="joystick_control" output="screen" />
-
-</launch>
