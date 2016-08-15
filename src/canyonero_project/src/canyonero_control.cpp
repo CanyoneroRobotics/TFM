@@ -1,6 +1,6 @@
 #include "canyonero_control.h"
 
-#define THRESHOLD 15
+#define THRESHOLD 0.15
 
 CanyoneroControlNode::CanyoneroControlNode(){
 
@@ -12,7 +12,7 @@ CanyoneroControlNode::CanyoneroControlNode(){
     joy_sub_  = nh.subscribe("/joy", 1,  &CanyoneroControlNode::joyCallback, this);
 
     //Control motors publishers
-    control_pub_ = nh.advertise<std_msgs::Float32MultiArray>("/motors_control", 10);
+    control_pub_ = nh.advertise<std_msgs::Int16MultiArray>("/motors_control", 1);
 }
 
 CanyoneroControlNode::~CanyoneroControlNode(){}
@@ -62,8 +62,8 @@ void CanyoneroControlNode::joyCallback(const sensor_msgs::Joy::ConstPtr& joy_msg
         controlMsg_.data.push_back(0.0);
     }else if(joy_msg->buttons[0] == 1){
 
-        controlMsg_.data.push_back(666);
-        controlMsg_.data.push_back(666);
+        controlMsg_.data.push_back(1);
+        controlMsg_.data.push_back(-1);
     }
 
     controlPublish();
@@ -78,9 +78,12 @@ int main(int argc, char** argv) {
 
   ROS_INFO_STREAM("Canyonero Control Started");
 
+  ros::Rate r(10);
+
   while(ros::ok()){
 
       ros::spinOnce();
+
   }
 
   return 0;

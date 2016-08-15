@@ -8,10 +8,10 @@ CanyoneroOdomNode::CanyoneroOdomNode(){
     ros::NodeHandle nh;
 
     //Motors velocity Subscriber
-    motorsVel_sub_ = nh.subscribe("/motors_vel", 10, &CanyoneroOdomNode::motorsVelocityCallback, this);
+    motorsVel_sub_ = nh.subscribe("/wheels_vel", 10, &CanyoneroOdomNode::motorsVelocityCallback, this);
 
     //Odomtry publisher
-    odom_pub_ = nh.advertise<nav_msgs::Odometry>("/odometry", 10);
+    odom_pub_ = nh.advertise<nav_msgs::Odometry>("/odometry", 1);
 
     v1 = 0.0, v2 = 0.0;
     x = 0.0, y = 0.0, th = 0.0;
@@ -51,8 +51,11 @@ int main(int argc, char** argv) {
 
       ros::spinOnce();
 
+      ROS_INFO_STREAM("1");
       if(canyonero_odom.hasWheelsVelocities){
 
+
+          ROS_INFO_STREAM("2");
           //compute velocity of robot frame
           v_angular = ((canyonero_odom.v1 - canyonero_odom.v2)/DISTANCEWHEELS);
           v_linear = (canyonero_odom.v1 + canyonero_odom.v2)/2;
@@ -118,6 +121,8 @@ int main(int argc, char** argv) {
 
           canyonero_odom.hasWheelsVelocities = false;
       }
+      sleep(10);
   }
+  ROS_INFO_STREAM("3");
   return 0;
 }

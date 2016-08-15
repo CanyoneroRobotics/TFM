@@ -10,9 +10,10 @@
 #include <std_msgs/Float32.h>
 #include <std_msgs/Int32.h>
 #include <std_msgs/Float32MultiArray.h>
+#include <std_msgs/Int16MultiArray.h>
 
 #define TICK 1330
-#define TICK1 1200
+#define TICK1 1300
 #define TICK2 840
 #define PERIMETER 0.62831853
 
@@ -24,6 +25,7 @@ Adafruit_DCMotor *myMotor2 = AFMS.getMotor(3);
 ros::NodeHandle nh;
 float vel1;
 float vel2;
+float tmp;
 //std_msgs::Int32 encoder1_msg;
 //std_msgs::Int32 encoder2_msg;
 std_msgs::Float32MultiArray wheelsVel_msg;
@@ -39,7 +41,9 @@ float wheel1_vel = 0;
 float wheel2_vel = 0;
 
 //TIME
-double last_time = 0;
+unsigned long last_time = 0;
+unsigned long current_time = 0;
+unsigned long dt = 0;
  
 //void motor1VelCallBack(const std_msgs::Float32& msg){
 //  vel1 = msg.data;
@@ -47,13 +51,13 @@ double last_time = 0;
 //void motor2VelCallBack(const std_msgs::Float32& msg){
 //  vel2 = msg.data;
 //}
-void motorsControlCallBack(const std_msgs::Float32MultiArray& msg){
+void motorsControlCallBack(const std_msgs::Int16MultiArray& msg){
   
   vel1 = msg.data[0];
   vel2 = msg.data[1];
 
 //encoders RESET. Triangle button of joystick. 
-  if(vel1 == 666 && vel2 == 666){ 
+  if(vel1 == 1 && vel2 == -1){ 
     vel1 = 0;
     vel2 = 0;
     encoder1Value = 0;
@@ -66,7 +70,6 @@ void motorsControlCallBack(const std_msgs::Float32MultiArray& msg){
 //http://bildr.org/2012/08/rotary-encoder-arduino/
 void updateEncoder1(){
   
-  lastEncoder1 = encoder1Value;
    // look for a low-to-high on channel A
   if (vel1 > 0) { 
    
@@ -79,8 +82,6 @@ void updateEncoder1(){
 }
 void updateEncoder2(){
 
-  
-  lastEncoder2 = encoder2Value;
    // look for a low-to-high on channel B
   if (vel2 < 0) { 
       encoder2Value --;         // CW
@@ -93,7 +94,7 @@ void updateEncoder2(){
 
 //ros::Subscriber<std_msgs::Float32> sub_vel1("/motor1_vel", &motor1VelCallBack);
 //ros::Subscriber<std_msgs::Float32> sub_vel2("/motor2_vel", &motor2VelCallBack);
-ros::Subscriber<std_msgs::Float32MultiArray> sub_control("/motors_control", &motorsControlCallBack);
+ros::Subscriber<std_msgs::Int16MultiArray> sub_control("/motors_control", &motorsControlCallBack);
 
 //ros::Publisher encoder1_pub("/motor1_encoder", &encoder1_msg);
 //ros::Publisher encoder2_pub("/motor2_encoder", &encoder2_msg);
@@ -107,6 +108,8 @@ void setup() {
   //encoder2_msg.data = 0;
   wheelsVel_msg.data[0] = 0;
   wheelsVel_msg.data[1] = 0;
+
+  last_time = 0;
 
   //Mega2560
   // external interrupt int.0    int.1    int.2   int.3   int.4   int.5            
@@ -130,12 +133,14 @@ void setup() {
   pinMode(13, OUTPUT);
   
   nh.getHardware()->setBaud(9600);
-  delay(10);
   nh.initNode();
   //nh.subscribe(sub_vel1);
   //nh.subscribe(sub_vel2);
   //nh.advertise(encoder1_pub);
   //nh.advertise(encoder2_pub);
+
+  wheelsVel_msg.data_length = 2;
+  
   nh.subscribe(sub_control);
   nh.advertise(wheelsVel_pub);
 
@@ -163,20 +168,24 @@ void loop() {
   //encoder2_pub.publish(&encoder2_msg);
 
   //compute delta the time between loops
-  double current_time = nh.now().toSec();
-  double dt = (current_time - last_time);
+  current_time = micros();
+  dt = (current_time - last_time);
   last_time = current_time;
-  
+
   //compute wheels velocity
   wheel1_vel = (((encoder1Value-lastEncoder1)*(PERIMETER/TICK1))/dt);
   wheel2_vel = (-1)*(((encoder2Value-lastEncoder2)*(PERIMETER/TICK2))/dt);
 
+  //wheelsVel_msg.data[0] = (encoder1Value-lastEncoder1)*(PERIMETER/TICK1);
+  //wheelsVel_msg.data[1] = (-1)*(encoder2Value-lastEncoder2)*(PERIMETER/TICK2);
+
   wheelsVel_msg.data[0] = wheel1_vel;
   wheelsVel_msg.data[1] = wheel2_vel;
+
+  lastEncoder1 = encoder1Value;
+  lastEncoder2 = encoder2Value;
   
   wheelsVel_pub.publish(&wheelsVel_msg);
   
   nh.spinOnce();
-   
-  delay(5);
 }

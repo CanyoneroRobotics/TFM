@@ -10,7 +10,7 @@
 #include <std_msgs/Float32MultiArray.h>
 #include <sensor_msgs/Joy.h>
 #include <std_msgs/Int32.h>
-#include <std_msgs/Int32MultiArray.h>
+#include <std_msgs/Int16MultiArray.h>
 #include <nav_msgs/Odometry.h>
 #include <tf/transform_broadcaster.h>
 
@@ -21,7 +21,7 @@ class CanyoneroControlNode {
   ~CanyoneroControlNode();
 
   void controlPublish();
-  std_msgs::Float32MultiArray controlMsg_;
+  std_msgs::Int16MultiArray controlMsg_;
 
  private:
 
