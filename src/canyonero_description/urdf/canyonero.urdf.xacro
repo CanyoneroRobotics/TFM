@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="canyonero">
+
+	<xacro:include filename="$(find canyonero_description)/urdf/canyonero_base.urdf.xacro"/>
+
+	<!-- Base -->
+	<xacro:base name="base"/>
+
+</robot>

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<property name="pos_X"       value="1.62"/>
+	<property name="pos_Y"       value="1.65"/>
+	<!--property name="pos_Z"       value="-0.68"/-->
+
+	<xacro:macro name="wheel" params="sideY sideX positionY positionX reflect parent">
+	    <link name="${sideY}_${sideX}_wheel_link">
+	    	<visual>
+	        	<origin xyz = "0 0 0" rpy = "0 -1.57 0"/>
+	        	<geometry>
+	          		<mesh filename="package://canyonero_description/meshes/canyonero_wheel.stl"/>
+	        	</geometry>
+	        	<material name = "cambot/black">
+					<color rgba = "0.0 0.0 0.0 1.0"/>
+				</material>
+	      	</visual>
+		    <!--inertial>
+		    	<origin xyz="1.62*${positionX} 1.65*${positionY} -0.68" rpy="1.57*${reflect} 0 0"/>
+		        <mass value="1.82362"/>
+		        <inertia ixx="0.00499743171" ixy="${ 0.00000004464 * reflect}" ixz="-0.00000002245"
+		                 iyy="0.00499741733" iyz="${-0.00000000164 * reflect}"
+		                 izz="0.00839239692"/>
+		    </inertial-->
+	      	<!--collision>
+	        	<origin xyz="0 0 0" rpy="0 0 0"/>
+	        	<geometry>
+	          		<mesh filename = "package://canyonero_description/meshes/canyonero_wheel.stl"/>
+	        	</geometry>
+	      	</collision-->
+	    </link>
+
+	    <joint name="${sideY}_${sideX}_wheel_joint" type="continuous">
+	    	<parent link="${parent}_link"/>
+	      	<child link="${sideY}_${sideX}_wheel_link"/>
+	      	<origin xyz="${pos_X}*${positionX} ${pos_Y}*${positionY} ${pos_Z}" rpy="1.57*${reflect} 0 0"/>
+	      	<axis xyz="0 0 1"/>
+	    </joint>
+  	</xacro:macro>
+</robot>
