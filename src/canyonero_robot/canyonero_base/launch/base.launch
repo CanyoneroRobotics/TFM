@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Load robot description -->
+    <!--<include file="$(find canyonero_description)/launch/description.launch"/>-->
+
+    <!-- Husky harware driver -->
+    <node pkg="canyonero_base" type="canyonero_node" name="canyonero_node">
+        <rosparam subst_value="true">
+            control_frequency: 10.0
+
+            max_acceleration: 3.0
+            max_speed: 1.0
+            wheel_diameter: 0.3555
+            polling_timeout: 10.0
+        </rosparam>
+    </node>
+
+    <!-- Differential controller parameters and basic localization -->
+    <include file="$(find canyonero_control)/launch/control.launch" />
+
+    <!--Teleop -->
+    <include file="$(find canyonero_control)/launch/teleop.launch" />
+
+
+</launch>

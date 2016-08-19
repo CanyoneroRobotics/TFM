@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package>
+  <name>canyonero_base</name>
+  <version>0.0.1</version>
+  <description>Canyonero robot driver</description>
+
+  <author email="juampe.lopez@gmail.com">Juan Pedro Lopez</author>
+  <maintainer email="juampe.lopez@gmail.com">Juan Pedro Lopez</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/canyonero_base</url>
+  <url type="bugtracker">https://github.com/CanyoneroRobotics/TFM/issues</url>
+  <url type="repository">https://github.com/CanyoneroRobotics</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>controller_manager</build_depend>
+  <build_depend>hardware_interface</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>roslaunch</build_depend>
+  <build_depend>roslint</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+
+  <run_depend>controller_manager</run_depend>
+  <run_depend>diff_drive_controller</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>hardware_interface</run_depend>
+  <run_depend>canyonero_control</run_depend>
+  <run_depend>canyonero_description</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>topic_tools</run_depend>
+
+  <export></export>
+</package>

@@ -1,4 +1,4 @@
-#include "canyonero_hardware_interfaces.h"
+#include "canyonero_hardware.h"
 #include "controller_manager/controller_manager.h"
 #include "ros/ros.h"
 
@@ -11,6 +11,7 @@ int main(int argc, char **argv)
   Canyonero canyonero;
   controller_manager::ControllerManager cm(&canyonero);
 
+  // Control loop
   while(ros::ok())
   {
     canyonero.read();

@@ -10,12 +10,12 @@ class Arduino{
 public:
     Arduino();
     int open();
-    DataBuffer read();
-    void write(DataBuffer buffer);
+    SerialPort::DataBuffer read();
+    void write(SerialPort::DataBuffer buffer);
     void close();
 private:
-    string serialDevice = "/dev/ACM0";
-    SerialPort serial;
+    std::string serialDevice;
+    LibSerial::SerialStream serial;
 };
 
 #endif // ARDUINO_H

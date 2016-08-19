@@ -62,7 +62,7 @@ double eff[4];
 };
 
 void Canyonero::read () {
-        Arduino arduino();
+        Arduino arduino;
         SerialPort::DataBuffer buffer;
 
         arduino.open();
@@ -79,13 +79,13 @@ void Canyonero::read () {
 }
 
 void Canyonero::write(){
-        Arduino arduino();
+        Arduino arduino;
         SerialPort::DataBuffer buffer;
 
-        buffer.push_back(0);
-        buffer.push_back(1);
-        buffer.push_back(2);
-        buffer.push_back(3);
+        buffer.push_back(vel[0]);
+        buffer.push_back(vel[1]);
+        buffer.push_back(vel[2]);
+        buffer.push_back(vel[3]);
 
         arduino.open();
         arduino.write(buffer);
