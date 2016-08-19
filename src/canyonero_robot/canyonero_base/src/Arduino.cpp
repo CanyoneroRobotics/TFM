@@ -31,19 +31,33 @@ SerialPort::DataBuffer Arduino::read()
 {
     SerialPort::DataBuffer buffer;
     unsigned int i = 0;
-    char c;
+    char c = '\0';
 
-    serial >> c;
-    while (c != '\0')
+    // Detect Start of Packet
+    while (c != '{')
     {
-        buffer.push_back(c);
         serial >> c;
     }
 
+    serial >> c;
+    buffer.push_back(c);
+    serial >> c;
+    buffer.push_back(c);
+    serial >> c;
+    buffer.push_back(c);
+    serial >> c;
+    buffer.push_back(c);
+
+    // Detect End of Packet
+    while (c != '}')
+    {
+        serial >> c;
+    }
+    
     return buffer;
 }
 
 void Arduino::write(SerialPort::DataBuffer buffer)
 {
-    serial << buffer[0] << buffer[1] << buffer[2] << buffer[3] << std::endl;
+    serial << '{' << buffer[0] << buffer[1] << buffer[2] << buffer[3] << '}' << std::endl;
 }

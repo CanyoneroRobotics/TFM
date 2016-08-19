@@ -82,10 +82,10 @@ void Canyonero::write(){
         Arduino arduino;
         SerialPort::DataBuffer buffer;
 
-        buffer.push_back(vel[0]);
-        buffer.push_back(vel[1]);
-        buffer.push_back(vel[2]);
-        buffer.push_back(vel[3]);
+        buffer.push_back((int8_t)vel[0]);
+        buffer.push_back((int8_t)vel[1]);
+        buffer.push_back((int8_t)vel[2]);
+        buffer.push_back((int8_t)vel[3]);
 
         arduino.open();
         arduino.write(buffer);
