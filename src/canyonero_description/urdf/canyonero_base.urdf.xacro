@@ -11,10 +11,7 @@
 
 	<xacro:include filename="$(find canyonero_description)/urdf/canyonero_wheel.urdf.xacro"/>
 
-	<property name="pos_Z2"       value="1.67"/>
-
 	<xacro:macro name= "base" params = "name">
-
 	<!-- BASE-FOOTPRINT -->
 		<!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin, navigation stack depends on this frame -->
 		<link name = "${name}_footprint"/>
@@ -22,7 +19,7 @@
 		<joint name = "${name}_footprint_joint" type = "fixed">
 			<parent link = "${name}_footprint"/>
 			<child link = "${name}_link"/>
-			<origin xyz = "0 0 ${pos_Z2}" rpy = "0 0 0"/>
+			<origin xyz = "0 0 ${rob_pos_Z}" rpy = "0 0 0"/>
 		</joint>
 
 		<!-- BASE-LINK -->
@@ -33,9 +30,7 @@
 				<geometry>
 					<mesh filename = "package://canyonero_description/meshes/canyonero_plates.stl"/>
 				</geometry>
-				<material name = "cambot/red">
-					<color rgba = "1.0 0.0 0.0 1"/>
-				</material>
+				<material name = "Red"/>
 			</visual>
 			<!--collision>
 	      		<origin xyz = "0 0 0" rpy = "0 0 0"/>
@@ -57,10 +52,11 @@
 		</link>
 
 		<!-- Wheels -->
-	    <xacro:wheel sideY = "frontal" sideX = "left" positionY = "1.0" positionX = "1.0" reflect = "-1.0" parent = "${name}"/>
-	    <xacro:wheel sideY = "frontal" sideX = "right" positionY = "1.0" positionX = "-1.0" reflect = "1.0" parent = "${name}"/>
-	    <xacro:wheel sideY = "back" sideX = "left" positionY = "-1.0" positionX = "1.0" reflect = "-1.0" parent = "${name}"/>
-	    <xacro:wheel sideY = "back" sideX = "right" positionY = "-1.0" positionX = "-1.0" reflect = "1.0" parent = "${name}"/>
+	    <xacro:wheel sideX = "frontal" sideY = "left" positionX = "1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}"/>
+	    <xacro:wheel sideX = "frontal" sideY = "right" positionX = "1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}"/>
+	    <xacro:wheel sideX = "back" sideY = "left" positionX = "-1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}"/>
+	    <xacro:wheel sideX = "back" sideY = "right" positionX = "-1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}"/>
+	    
 	</xacro:macro>
 
 </robot>
