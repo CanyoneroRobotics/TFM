@@ -1,14 +1,13 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(canyonero_description)
+project(canyonero_gazebo)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED)
-find_package(gazebo REQUIRED)
 
 ## System dependencies are found with CMake's conventions
-#find_package(gazebo REQUIRED COMPONENTS system)
+# find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -32,9 +31,7 @@ find_package(gazebo REQUIRED)
 ##     * add a run_depend tag for "message_runtime"
 ## * In this file (CMakeLists.txt):
 ##   * add "message_generation" and every package in MSG_DEP_SET to
-find_package(catkin REQUIRED COMPONENTS 
-	gazebo_ros
-)
+##     find_package(catkin REQUIRED COMPONENTS ...)
 ##   * add "message_runtime" and every package in MSG_DEP_SET to
 ##     catkin_package(CATKIN_DEPENDS ...)
 ##   * uncomment the add_*_files sections below as needed
@@ -79,9 +76,7 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add a build_depend and a run_depend tag for "dynamic_reconfigure"
 ## * In this file (CMakeLists.txt):
 ##   * add "dynamic_reconfigure" to
-find_package(catkin REQUIRED COMPONENTS 
-gazebo_ros
-)
+##     find_package(catkin REQUIRED COMPONENTS ...)
 ##   * uncomment the "generate_dynamic_reconfigure_options" section below
 ##     and list every .cfg file to be processed
 
@@ -101,11 +96,10 @@ gazebo_ros
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
- DEPENDS
-	gazebo_ros
- CATKIN_DEPENDS
- INCLUDE_DIRS
- LIBRARIES
+#  INCLUDE_DIRS include
+#  LIBRARIES canyonero_gazebo
+#  CATKIN_DEPENDS other_catkin_pkg
+#  DEPENDS system_lib
 )
 
 ###########
@@ -114,27 +108,27 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-include_directories(include${catkin_INCLUDE_DIRS} ${GAZEBO_INCLUDE_DIRS} ${SDFormat_INCLUDE_DIRS})
+# include_directories(include)
 
 ## Declare a C++ library
-# add_library(canyonero_description
-#   src/${PROJECT_NAME}/canyonero_description.cpp
+# add_library(canyonero_gazebo
+#   src/${PROJECT_NAME}/canyonero_gazebo.cpp
 # )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-# add_dependencies(canyonero_description ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(canyonero_gazebo ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(canyonero_description_node src/canyonero_description_node.cpp)
+# add_executable(canyonero_gazebo_node src/canyonero_gazebo_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(canyonero_description_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(canyonero_gazebo_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(canyonero_description_node
+# target_link_libraries(canyonero_gazebo_node
 #   ${catkin_LIBRARIES}
 # )
 
@@ -153,7 +147,7 @@ include_directories(include${catkin_INCLUDE_DIRS} ${GAZEBO_INCLUDE_DIRS} ${SDFor
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS canyonero_description canyonero_description_node
+# install(TARGETS canyonero_gazebo canyonero_gazebo_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -178,7 +172,7 @@ include_directories(include${catkin_INCLUDE_DIRS} ${GAZEBO_INCLUDE_DIRS} ${SDFor
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_canyonero_description.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_canyonero_gazebo.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

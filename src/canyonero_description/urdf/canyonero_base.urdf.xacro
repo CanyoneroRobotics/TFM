@@ -9,7 +9,8 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-	<xacro:include filename="$(find canyonero_description)/urdf/canyonero_wheel.urdf.xacro"/>
+	<xacro:include filename="$(find canyonero_description)/urdf/wheels/canyonero_wheel.urdf.xacro"/>
+	<!--xacro:include filename="$(find canyonero_description)/urdf/wheels/canyonero_wheel.transmission.xacro"/-->
 
 	<xacro:macro name= "base" params = "name">
 	<!-- BASE-FOOTPRINT -->
@@ -32,12 +33,12 @@
 				</geometry>
 				<material name = "Red"/>
 			</visual>
-			<!--collision>
+			<collision>
 	      		<origin xyz = "0 0 0" rpy = "0 0 0"/>
 	      		<geometry>
 	        		<mesh filename = "package://canyonero_description/meshes/canyonero_plates_collision.stl"/>
 	      		</geometry>
-	    	</collision-->
+	    	</collision>
 			<inertial>
 	      		<origin rpy = "0 0 0" xyz = "174.84e-3 117.51e-3 -218.86e-3"/>
 	      		<mass value = "15.23"/>
@@ -49,6 +50,9 @@
 	               		 iyz="0.000048"
 	               		 izz="0.016834"/>
 	    	</inertial>
+	    	<gazebo reference="${name}_link">
+      			<material>Gazebo/Red</material>
+    		</gazebo>
 		</link>
 
 		<!-- Wheels -->

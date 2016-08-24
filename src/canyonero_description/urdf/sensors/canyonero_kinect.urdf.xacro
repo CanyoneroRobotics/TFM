@@ -36,6 +36,9 @@
                  iyy="0.000498940" iyz="0.0"
                  izz="0.003879257" />
       </inertial>
+      <gazebo reference="camera_link">
+        <material>Gazebo/Black</material>
+      </gazebo>
     </link>
 
     <!-- RGB camera -->

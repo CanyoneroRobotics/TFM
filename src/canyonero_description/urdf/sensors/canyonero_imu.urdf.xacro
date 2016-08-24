@@ -53,6 +53,7 @@
           </noise>
         </imu>
       </sensor>
+      <material>Gazebo/Red</material>
     </gazebo>
   </xacro:macro>
 
