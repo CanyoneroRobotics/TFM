@@ -25,7 +25,10 @@ roslint_cpp(
   inc/Arduino.h
 )
 
-roslaunch_add_file_check(launch)
+if(CATKIN_ENABLE_TESTING)
+  find_package(roslaunch REQUIRED)
+  roslaunch_add_file_check(launch)
+endif()
 
 install(TARGETS canyonero_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
