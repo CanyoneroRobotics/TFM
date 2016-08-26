@@ -11,7 +11,7 @@
 
             max_acceleration: 3.0
             max_speed: 1.0
-            wheel_diameter: 0.3555
+            wheel_diameter: 0.20
             polling_timeout: 10.0
         </rosparam>
     </node>
