@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     canyonero.write();
     usleep(100000);
 
-    ros::spinOnce();
+    //ros::spinOnce();
   }
 
   ROS_INFO("We exited the control loop");
