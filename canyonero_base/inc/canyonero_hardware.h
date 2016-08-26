@@ -77,7 +77,7 @@ void Canyonero::read () {
                 eff[i]=0;
 
                 vel[i]=(double)buffer[i];
-                ROS_DEBUG("Canyonero::read() -> vel[%d] = %f", i, vel[i]);
+                ROS_INFO("Canyonero::read() -> vel[%d] = %f", i, vel[i]);
         }
 }
 
@@ -87,7 +87,7 @@ void Canyonero::write(){
 
         for(unsigned int i = 0; i<4; i++)
         {
-            ROS_DEBUG("Canyonero::read() -> vel[%d] = %f", i, vel[i]);
+            ROS_INFO("Canyonero::write() -> vel[%d] = %f", i, vel[i]);
             buffer.push_back((int8_t)vel[i]);
         }
 

@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "canyonero_hardware_interface");
 
-  ros::NodeHandle n;
+  ros::NodeHandle nh;
 
   Canyonero canyonero;
   controller_manager::ControllerManager cm(&canyonero);
