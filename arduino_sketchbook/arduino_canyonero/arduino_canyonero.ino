@@ -5,7 +5,9 @@
 #include <Adafruit_MotorShield.h>
 
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
+Adafruit_DCMotor *FL_motor = AFMS.getMotor(4);
 Adafruit_DCMotor *RL_motor = AFMS.getMotor(3);
+Adafruit_DCMotor *FR_motor = AFMS.getMotor(2);
 Adafruit_DCMotor *RR_motor = AFMS.getMotor(1);
 
 //ROS Variables
@@ -154,40 +156,54 @@ void readFromRoscontrol(void)
     //RL_speed = (RL_rads * WHEEL_DIAM_CM / 2) / 100; // rad/s to cm/s to m/s
     //RR_speed = (RR_rads * WHEEL_DIAM_CM / 2) / 100; // rad/s to cm/s to m/s
 
+    if (RL_rads > 10) RL_rads = 10;
+    else if (RL_rads < -10) RL_rads = -10;
+
+    if (RR_rads > 10) RR_rads = 10;
+    else if (RR_rads < -10) RR_rads = -10;
+
     if (RL_rads != 0)
-      RL_speed = map(RL_rads, -10, 10, -255, 255);
+      RL_speed = map(RL_rads, -10, 10, -192, 192);
     else
       RL_speed = 0;
 
     if (RR_rads != 0)
-      RR_speed = map(RR_rads, -10, 10, -255, 255);
+      RR_speed = map(RR_rads, -10, 10, -192, 192);
     else
       RR_speed = 0;
 
-    if (RL_speed > 255) RL_speed = 255;
-    else if (RL_speed < -255) RL_speed = -255;
+    if (RL_speed > 192) RL_speed = 192;
+    else if (RL_speed < -192) RL_speed = -192;
 
-    if (RR_speed > 255) RR_speed = 255;
-    else if (RR_speed < -255) RR_speed = -255;
+    if (RR_speed > 192) RR_speed = 192;
+    else if (RR_speed < -192) RR_speed = -192;
 
     if (RL_speed >= 0)
     {
       RL_motor->setSpeed(RL_speed);
       RL_motor->run(FORWARD);
+      FL_motor->setSpeed(RL_speed);
+      FL_motor->run(FORWARD);
     }
     else if (RL_speed < 0)
     {
       RL_motor->setSpeed(-RL_speed);
       RL_motor->run(BACKWARD);
+      FL_motor->setSpeed(-RL_speed);
+      FL_motor->run(BACKWARD);
     }
 
     if (RR_speed >= 0) {
       RR_motor->setSpeed(RR_speed);
       RR_motor->run(FORWARD);
+      FR_motor->setSpeed(RR_speed);
+      FR_motor->run(FORWARD);
     }
     else if (RR_speed < 0) {
       RR_motor->setSpeed(-RR_speed);
       RR_motor->run(BACKWARD);
+      FR_motor->setSpeed(-RR_speed);
+      FR_motor->run(BACKWARD);
     }
   }
 }
@@ -224,6 +240,12 @@ void setup() {
 
   RR_motor->setSpeed(0);
   RR_motor->run(FORWARD);
+
+  FL_motor->setSpeed(0);
+  FL_motor->run(FORWARD);
+
+  FR_motor->setSpeed(0);
+  FR_motor->run(FORWARD);
 
   last_time = millis();
 }
