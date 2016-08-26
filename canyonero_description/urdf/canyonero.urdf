@@ -23,23 +23,26 @@
 				<color rgba = "1.0 0.0 0.0 1"/>
 			</material>
 		</visual>
-		<!--collision>
-      		<origin xyz = "0 0 0.12" rpy = "1.57 0 3.14"/>
-      		<geometry>
-        		<mesh filename = "package://cambot_description/meshes/cambot_base_collision.stl" scale="0.01 0.01 0.01"/>
-      		</geometry>
-    	</collision-->
+		<collision>
+	      		<origin xyz = "0 0 0" rpy = "0 0 0"/>
+	      		<geometry>
+	        		<mesh filename = "package://canyonero_description/meshes/canyonero_plates_collision.stl"/>
+	      		</geometry>
+	    	</collision>
 		<inertial>
-      		<origin rpy = "0 0 0" xyz = "174.84e-3 117.51e-3 -218.86e-3"/>
-      		<mass value = "15.23"/>
-      		<!-- inertia at cm or origin?-->
-      		<inertia ixx = "0.016258"
-               		 ixy = "0.000432"
-               		 ixz="-0.000049"
-               		 iyy="0.019275"
-               		 iyz="0.000048"
-               		 izz="0.016834"/>
-    	</inertial>
+	      		<origin rpy = "0 0 0" xyz = "174.84e-3 117.51e-3 -218.86e-3"/>
+	      		<mass value = "15.23"/>
+	      		<!-- inertia at cm or origin?-->
+	      		<inertia ixx = "0.016258"
+	               		 ixy = "0.000432"
+	               		 ixz="-0.000049"
+	               		 iyy="0.019275"
+	               		 iyz="0.000048"
+	               		 izz="0.016834"/>
+	    	</inertial>
+	  <gazebo reference="base_link">
+	  	<material>Gazebo/Red</material>
+	  </gazebo>
 	</link>
 
 	<!-- WHEEL-JOINTS -->
@@ -98,23 +101,20 @@
 				<color rgba = "0.0 0.0 0.0 1.0"/>
 			</material>
 		</visual>
-		<!--collision>
-      		<origin xyz = "0 0 0.12" rpy = "1.57 0 3.14"/>
-      		<geometry>
-        		<mesh filename = "package://cambot_description/meshes/cambot_base_collision.stl" scale="0.01 0.01 0.01"/>
-      		</geometry>
-    	</collision-->
+		<collision>
+	    <origin xyz="0 0 0" rpy="0 0 0"/>
+	      <geometry>
+	        <mesh filename = "package://canyonero_description/meshes/canyonero_wheel_collision.stl"/>
+	      </geometry>
+	  </collision>
 		<inertial>
-      		<origin rpy = "0 0 0" xyz = "40.51e-3 38.66e-3 -54.98e-3"/>
-      		<mass value = "15.23"/>
-      		<!-- inertia at cm or origin?-->
-      		<inertia ixx = "0.016258"
-               		 ixy = "0.000432"
-               		 ixz="-0.000049"
-               		 iyy="0.019275"
-               		 iyz="0.000048"
-               		 izz="0.016834"/>
-    	</inertial>
+		  <origin xyz="0.1026 0.0 0.0" rpy="0 0 0"/>
+		    <mass value="1.419"/>
+		    <inertia ixx="0.0165" ixy="0.0" ixz="0.0"
+		             iyy="0.0106" iyz="0.0"
+		             izz="0.0106"/>
+		</inertial>
+    	
 	</link>
 
 	<link name = "frontal_right_wheel_link">
@@ -127,23 +127,19 @@
 				<color rgba = "0.0 0.0 0.0 1.0"/>
 			</material>
 		</visual>
-		<!--collision>
-      		<origin xyz = "0 0 0.12" rpy = "1.57 0 3.14"/>
-      		<geometry>
-        		<mesh filename = "package://cambot_description/meshes/cambot_base_collision.stl" scale="0.01 0.01 0.01"/>
-      		</geometry>
-    	</collision-->
+		<collision>
+	    <origin xyz="0 0 0" rpy="0 0 0"/>
+	      <geometry>
+	        <mesh filename = "package://canyonero_description/meshes/canyonero_wheel_collision.stl"/>
+	      </geometry>
+	  </collision>
 		<inertial>
-      		<origin rpy = "0 0 0" xyz = "40.51e-3 38.66e-3 -54.98e-3"/>
-      		<mass value = "15.23"/>
-      		<!-- inertia at cm or origin?-->
-      		<inertia ixx = "0.016258"
-               		 ixy = "0.000432"
-               		 ixz="-0.000049"
-               		 iyy="0.019275"
-               		 iyz="0.000048"
-               		 izz="0.016834"/>
-    	</inertial>
+		  <origin xyz="0.1026 0.0 0.0" rpy="0 0 0"/>
+		    <mass value="1.419"/>
+		    <inertia ixx="0.0165" ixy="0.0" ixz="0.0"
+		             iyy="0.0106" iyz="0.0"
+		             izz="0.0106"/>
+		</inertial>
 	</link>
 
 	<link name = "back_left_wheel_link">
@@ -156,23 +152,19 @@
 				<color rgba = "0.0 0.0 0.0 1.0"/>
 			</material>
 		</visual>
-		<!--collision>
-      		<origin xyz = "0 0 0.12" rpy = "1.57 0 3.14"/>
-      		<geometry>
-        		<mesh filename = "package://cambot_description/meshes/cambot_base_collision.stl" scale="0.01 0.01 0.01"/>
-      		</geometry>
-    	</collision-->
+		<collision>
+	    <origin xyz="0 0 0" rpy="0 0 0"/>
+	      <geometry>
+	        <mesh filename = "package://canyonero_description/meshes/canyonero_wheel_collision.stl"/>
+	      </geometry>
+	  </collision>
 		<inertial>
-      		<origin rpy = "0 0 0" xyz = "40.51e-3 38.66e-3 -54.98e-3"/>
-      		<mass value = "15.23"/>
-      		<!-- inertia at cm or origin?-->
-      		<inertia ixx = "0.016258"
-               		 ixy = "0.000432"
-               		 ixz="-0.000049"
-               		 iyy="0.019275"
-               		 iyz="0.000048"
-               		 izz="0.016834"/>
-    	</inertial>
+		  <origin xyz="0.1026 0.0 0.0" rpy="0 0 0"/>
+		    <mass value="1.419"/>
+		    <inertia ixx="0.0165" ixy="0.0" ixz="0.0"
+		             iyy="0.0106" iyz="0.0"
+		             izz="0.0106"/>
+		</inertial>
 	</link>
 
 	<link name = "back_right_wheel_link">
@@ -185,23 +177,19 @@
 				<color rgba = "0.0 0.0 0.0 1.0"/>
 			</material>
 		</visual>
-		<!--collision>
-      		<origin xyz = "0 0 0.12" rpy = "1.57 0 3.14"/>
-      		<geometry>
-        		<mesh filename = "package://cambot_description/meshes/cambot_base_collision.stl" scale="0.01 0.01 0.01"/>
-      		</geometry>
-    	</collision-->
+		<collision>
+	    <origin xyz="0 0 0" rpy="0 0 0"/>
+	      <geometry>
+	        <mesh filename = "package://canyonero_description/meshes/canyonero_wheel_collision.stl"/>
+	      </geometry>
+	  </collision>
 		<inertial>
-      		<origin rpy = "0 0 0" xyz = "40.51e-3 38.66e-3 -54.98e-3"/>
-      		<mass value = "15.23"/>
-      		<!-- inertia at cm or origin?-->
-      		<inertia ixx = "0.016258"
-               		 ixy = "0.000432"
-               		 ixz="-0.000049"
-               		 iyy="0.019275"
-               		 iyz="0.000048"
-               		 izz="0.016834"/>
-    	</inertial>
+		  <origin xyz="0.1026 0.0 0.0" rpy="0 0 0"/>
+		    <mass value="1.419"/>
+		    <inertia ixx="0.0165" ixy="0.0" ixz="0.0"
+		             iyy="0.0106" iyz="0.0"
+		             izz="0.0106"/>
+		</inertial>
 	</link>
 
 	<!-- KINECT-LINK -->
@@ -216,22 +204,19 @@
 				<color rgba = "0.0 0.0 0.0 1.0" />
 			</material>
 		</visual>
-		<!--collision>
-      		<origin xyz = "0 0 0.12" rpy = "1.57 0 3.14"/>
-      		<geometry>
-        		<mesh filename = "package://cambot_description/meshes/cambot_base_collision.stl" scale="0.01 0.01 0.01"/>
-      		</geometry>
-    	</collision-->
-		<inertial>
-      		<origin rpy = "0 0 0" xyz = "7.035e-3 -70.134e-3 -87.744e-3"/>
-      		<mass value = "0.0458425"/>
-      		<inertia ixx = "0.001351"
-               ixy = "0.000000"
-               ixz="0.000000"
-               iyy="0.000886"
-               iyz="-0.000026"
-               izz="0.001635"/>
-    	</inertial>
+		<collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  	    <geometry>
+  	      <box size="0.07271 0.27794 0.073"/>
+  	    </geometry>
+  	  </collision>
+      <inertial>
+        <mass value="0.564" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.003881243" ixy="0.0" ixz="0.0"
+                 iyy="0.000498940" iyz="0.0"
+                 izz="0.003879257" />
+      </inertial>
 	</link>
 
 	<!-- IMU-LINK -->
@@ -253,15 +238,10 @@
       		</geometry>
     	</collision-->
 		<inertial>
-      		<origin rpy = "0 0 0" xyz = "7.035e-3 -70.134e-3 -87.744e-3"/>
-      		<mass value = "0.0458425"/>
-      		<inertia ixx = "0.001351"
-               ixy = "0.000000"
-               ixz="0.000000"
-               iyy="0.000886"
-               iyz="-0.000026"
-               izz="0.001635"/>
-    	</inertial>
+        <mass value="0.01"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>
+      </inertial>
 	</link>
 
 </robot>

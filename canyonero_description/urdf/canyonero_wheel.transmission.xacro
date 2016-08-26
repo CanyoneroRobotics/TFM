@@ -1,0 +1,17 @@
+<transmission name="simple_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="${sideY}_${sideX}_wheel_joint">
+		<hardwareInterface>EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="DC_motor">
+		<mechanicalReduction>1</mechanicalReduction>
+		<hardwareInterface>EffortJointInterface</hardwareInterface>
+  </actuator>
+
+	<gazebo>
+	  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+		<robotNamespace>/CANYONERO</robotNamespace>
+	  </plugin>
+	</gazebo>
+
+</transmission>

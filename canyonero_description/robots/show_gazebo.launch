@@ -1,0 +1,18 @@
+<launch>
+	 <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="worlds/mud.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+	<!-- send canyonero urdf to param server -->
+	<param name="object" command="$(find xacro)/xacro.py /home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/urdf/canyonero.urdf.xacro" />
+
+	<!-- push canyonero_description to factory and spawn robot in gazebo -->
+	<node name="spawn_canyonero" pkg="gazebo" type="spawn_model" args="-urdf -param object -z 0.01 -model canyonero" respawn="false" output="screen" />
+
+</launch>

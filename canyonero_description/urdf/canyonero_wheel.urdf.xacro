@@ -7,42 +7,39 @@
 
 -->
 
-<robot xmlns:xacro="http://ros.org/wiki/xacro">
-
-	<property name="pos_X"       value="1.62"/>
-	<property name="pos_Y"       value="1.65"/>
-	<!--property name="pos_Z"       value="-0.68"/-->
+<robot xmlns:xacro = "http://ros.org/wiki/xacro">
 
 	<xacro:macro name="wheel" params="sideY sideX positionY positionX reflect parent">
 	    <link name="${sideY}_${sideX}_wheel_link">
 	    	<visual>
-	        	<origin xyz = "0 0 0" rpy = "0 -1.57 0"/>
+	        	<origin xyz = "0 0 0" rpy = "0 ${-PI / 2} 0"/>
 	        	<geometry>
 	          		<mesh filename="package://canyonero_description/meshes/canyonero_wheel.stl"/>
 	        	</geometry>
-	        	<material name = "cambot/black">
-					<color rgba = "0.0 0.0 0.0 1.0"/>
-				</material>
+	        	<material name = "Black"/>
 	      	</visual>
-		    <!--inertial>
-		    	<origin xyz="1.62*${positionX} 1.65*${positionY} -0.68" rpy="1.57*${reflect} 0 0"/>
-		        <mass value="1.82362"/>
-		        <inertia ixx="0.00499743171" ixy="${ 0.00000004464 * reflect}" ixz="-0.00000002245"
-		                 iyy="0.00499741733" iyz="${-0.00000000164 * reflect}"
-		                 izz="0.00839239692"/>
-		    </inertial-->
-	      	<!--collision>
+		    <inertial>
+		    	<origin xyz="0.1026 0.0 0.0" rpy="0 0 0"/>
+		        <mass value="1.419"/>
+		        <inertia ixx="0.0165" ixy="0.0" ixz="0.0"
+		                 iyy="0.0106" iyz="0.0"
+		                 izz="0.0106"/>
+		    </inertial>
+	      	<collision>
 	        	<origin xyz="0 0 0" rpy="0 0 0"/>
 	        	<geometry>
-	          		<mesh filename = "package://canyonero_description/meshes/canyonero_wheel.stl"/>
+	          		<mesh filename = "package://canyonero_description/meshes/canyonero_wheel_collision.stl"/>
 	        	</geometry>
-	      	</collision-->
+	      	</collision>
+	      	<gazebo reference="${sideY}_${sideX}_wheel_link">
+      			<material>Gazebo/Black</material>
+    		</gazebo>
 	    </link>
 
 	    <joint name="${sideY}_${sideX}_wheel_joint" type="continuous">
 	    	<parent link="${parent}_link"/>
 	      	<child link="${sideY}_${sideX}_wheel_link"/>
-	      	<origin xyz="${pos_X}*${positionX} ${pos_Y}*${positionY} ${pos_Z}" rpy="1.57*${reflect} 0 0"/>
+	      	<origin xyz="${wheel_pos_X * positionX} ${wheel_pos_Y * positionY} ${-wheel_pos_Z}" rpy="${(PI / 2) * reflect} 0 0"/>
 	      	<axis xyz="0 0 1"/>
 	    </joint>
   	</xacro:macro>
