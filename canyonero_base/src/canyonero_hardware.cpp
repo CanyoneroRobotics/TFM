@@ -14,6 +14,10 @@ int main(int argc, char **argv)
 
   ROS_INFO("Entering control loop");
 
+  //ros::CallbackQueue canyonero_queue;
+  ros::AsyncSpinner canyonero_spinner(1);
+  canyonero_spinner.start();
+
   // Control loop
   while(ros::ok())
   {
@@ -22,6 +26,8 @@ int main(int argc, char **argv)
     cm.update(canyonero.get_time(), canyonero.get_period());
     canyonero.write();
     usleep(100000);
+
+    ros::spinOnce();
   }
 
   ROS_INFO("We exited the control loop");
