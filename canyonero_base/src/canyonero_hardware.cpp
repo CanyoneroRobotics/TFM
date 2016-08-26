@@ -17,7 +17,7 @@ int main(int argc, char **argv)
   // Control loop
   while(ros::ok())
   {
-      ROS_INFO("Control loop: Hi!");
+      ROS_INFO_ONCE("Control loop: Hi!");
     canyonero.read();
     cm.update(canyonero.get_time(), canyonero.get_period());
     canyonero.write();

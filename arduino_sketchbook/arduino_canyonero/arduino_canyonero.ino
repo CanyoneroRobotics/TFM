@@ -191,8 +191,8 @@ void setup() {
 void loop() {
 
   writeToRoscontrol();
+  delay(50);
   readFromRoscontrol();
-
-  delay(5);
+  delay(100);
 }
 
