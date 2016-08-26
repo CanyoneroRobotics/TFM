@@ -44,6 +44,8 @@ Canyonero(){
 
         //record current time
         last_time = ros::Time::now();
+
+        arduino.open();
 }
 
 void read();
@@ -61,15 +63,13 @@ double cmd[4];
 double pos[4];
 double vel[4];
 double eff[4];
+Arduino arduino;
 };
 
 void Canyonero::read () {
-        Arduino arduino;
         SerialPort::DataBuffer buffer;
 
-        arduino.open();
         buffer = arduino.read();
-        arduino.close();
 
         for (unsigned int i = 0; i<4 && i<buffer.size(); i++)
         {
@@ -82,7 +82,6 @@ void Canyonero::read () {
 }
 
 void Canyonero::write(){
-        Arduino arduino;
         SerialPort::DataBuffer buffer;
 
         for(unsigned int i = 0; i<4; i++)
@@ -91,9 +90,7 @@ void Canyonero::write(){
             buffer.push_back((int8_t)vel[i]);
         }
 
-        arduino.open();
         arduino.write(buffer);
-        arduino.close();
 }
 
 ros::Time Canyonero::get_time(){
