@@ -92,7 +92,7 @@ void writeToRoscontrol(void)
   Serial.write((uint8_t)FL_speed);
   Serial.write((uint8_t)FR_speed);
   Serial.write((uint8_t)RL_speed);
-  Serial.write((uint8_t)RR_speed);  
+  Serial.write((uint8_t)RR_speed);
 
   // End of Packet
   Serial.write('}');
@@ -112,7 +112,7 @@ void readFromRoscontrol(void)
   FL_rads = (int8_t)Serial.read();
   FR_rads = (int8_t)Serial.read();
   RL_rads = (int8_t)Serial.read();
-  RR_rads = (int8_t)Serial.read();  
+  RR_rads = (int8_t)Serial.read();
 
   // Detect End of Packet
   while (c != EOP)
@@ -120,8 +120,19 @@ void readFromRoscontrol(void)
     c = Serial.read();
   }
 
+  digitalWrite(13, HIGH);
+
   RL_speed = (RL_rads * WHEEL_DIAM_CM / 2) / 100; // rad/s to cm/s to m/s
   RR_speed = (RR_rads * WHEEL_DIAM_CM / 2) / 100; // rad/s to cm/s to m/s
+
+  RL_speed = RL_rads * 255;
+  RR_speed = RR_rads * 255;
+
+  if (RL_speed > 255) RL_speed = 255;
+  else if (RL_speed < -255) RL_speed = -255;
+
+  if (RR_speed > 255) RR_speed = 255;
+  else if (RR_speed < -255) RR_speed = -255;
 
   if (RL_speed >= 0)
   {
@@ -142,6 +153,8 @@ void readFromRoscontrol(void)
     RR_motor->setSpeed(abs(RR_speed));
     RR_motor->run(FORWARD);
   }
+
+  digitalWrite(13, LOW);
 }
 
 void setup() {
@@ -162,12 +175,18 @@ void setup() {
   attachInterrupt(4, updateRLEncoder, CHANGE); // Also LOW, RISING, FALLING
   attachInterrupt(5, updateRREncoder, CHANGE); // Also LOW, RISING, FALLING
 
-  AFMS.begin(200); // create with the default frequency 1.6KHz
+  AFMS.begin(); // create with the default frequency 1.6KHz
 
   Serial.begin(9600);
   recv_bytes = 0;
 
   pinMode(13, OUTPUT);
+
+  RL_motor->setSpeed(0);
+  RL_motor->run(FORWARD);
+
+  RR_motor->setSpeed(0);
+  RR_motor->run(FORWARD);
 
   last_time = millis();
 }

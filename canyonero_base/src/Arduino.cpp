@@ -4,7 +4,7 @@
 
 Arduino::Arduino()
 {
-    serialDevice = "/dev/ACM0";
+    serialDevice = "/dev/ttyACM0";
 }
 
 int Arduino::open()
@@ -53,7 +53,7 @@ SerialPort::DataBuffer Arduino::read()
     {
         serial >> c;
     }
-    
+
     return buffer;
 }
 

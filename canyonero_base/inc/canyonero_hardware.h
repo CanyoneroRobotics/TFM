@@ -75,6 +75,7 @@ void Canyonero::read () {
                 eff[i]=0;
 
                 vel[i]=(double)buffer[i];
+                ROS_DEBUG("Canyonero::read() -> vel[%d] = %f", i, vel[i]);
         }
 }
 
@@ -82,10 +83,11 @@ void Canyonero::write(){
         Arduino arduino;
         SerialPort::DataBuffer buffer;
 
-        buffer.push_back((int8_t)vel[0]);
-        buffer.push_back((int8_t)vel[1]);
-        buffer.push_back((int8_t)vel[2]);
-        buffer.push_back((int8_t)vel[3]);
+        for(unsigned int i = 0; i<4; i++)
+        {
+            ROS_DEBUG("Canyonero::read() -> vel[%d] = %f", i, vel[i]);
+            buffer.push_back((int8_t)vel[i]);
+        }
 
         arduino.open();
         arduino.write(buffer);
