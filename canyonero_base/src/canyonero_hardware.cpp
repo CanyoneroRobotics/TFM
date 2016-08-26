@@ -1,6 +1,7 @@
 #include "canyonero_hardware.h"
 #include "controller_manager/controller_manager.h"
 #include "ros/ros.h"
+#include <unistd.h>
 
 int main(int argc, char **argv)
 {
@@ -9,7 +10,9 @@ int main(int argc, char **argv)
   ros::NodeHandle nh;
 
   Canyonero canyonero;
-  controller_manager::ControllerManager cm(&canyonero);
+  controller_manager::ControllerManager cm(&canyonero, nh);
+
+  ROS_INFO("Entering control loop");
 
   // Control loop
   while(ros::ok())
@@ -17,6 +20,10 @@ int main(int argc, char **argv)
     canyonero.read();
     cm.update(canyonero.get_time(), canyonero.get_period());
     canyonero.write();
-    sleep(20);
+    usleep(100000);
   }
+
+  ROS_INFO("We exited the control loop");
+
+  return 0;
 }
