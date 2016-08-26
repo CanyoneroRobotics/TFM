@@ -123,7 +123,7 @@ void readFromRoscontrol(void)
   digitalWrite(13, HIGH);
 
   RL_speed = (RL_rads * WHEEL_DIAM_CM / 2) / 100; // rad/s to cm/s to m/s
-  RR_speed = (RR_rads * WHEEL_DIAM_CM / 2) / 100; // rad/s to cm/s to m/s
+  RR_speed = (RR_rads * WHEEL_DIAM_CM / 2) / 100; // rad/s to cm/s to m/s 
 
   if (RL_speed > 255) RL_speed = 255;
   else if (RL_speed < -255) RL_speed = -255;

@@ -86,8 +86,8 @@ void Canyonero::write(){
 
         for(unsigned int i = 0; i<4; i++)
         {
-            ROS_INFO("Canyonero::write() -> vel[%d] = %f", i, vel[i]);
-            buffer.push_back((int8_t)vel[i]);
+            ROS_INFO("Canyonero::write() -> vel[%d] = %f", i, cmd[i]);
+            buffer.push_back((int8_t)cmd[i]);
         }
 
         arduino.write(buffer);
