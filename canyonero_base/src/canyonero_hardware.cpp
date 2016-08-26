@@ -14,8 +14,7 @@ int main(int argc, char **argv)
 
         ROS_INFO("Entering control loop");
 
-        ros::CallbackQueue canyonero_queue;
-        ros::AsyncSpinner canyonero_spinner(4, &canyonero_queue);
+        ros::AsyncSpinner canyonero_spinner(1);
         canyonero_spinner.start();
 
         // Control loop
