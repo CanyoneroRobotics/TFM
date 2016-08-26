@@ -18,19 +18,23 @@
 	        	</geometry>
 	        	<material name = "Black"/>
 	      	</visual>
-		    <!--inertial>
-		    	<origin xyz="1.62*${positionX} 1.65*${positionY} -0.68" rpy="1.57*${reflect} 0 0"/>
-		        <mass value="1.82362"/>
-		        <inertia ixx="0.00499743171" ixy="${ 0.00000004464 * reflect}" ixz="-0.00000002245"
-		                 iyy="0.00499741733" iyz="${-0.00000000164 * reflect}"
-		                 izz="0.00839239692"/>
-		    </inertial-->
-	      	<!--collision>
-	        	<origin xyz="0 0 0" rpy="0 0 0"/>
+		    <inertial>
+		    	<origin xyz="0.0 0.0 0.102638" rpy="0 0 0"/>
+		        <mass value="1.419"/>
+		        <inertia ixx="0.01101" ixy="0.0000238" ixz="0.00000223198"
+				        		 iyy="0.01104" iyz="${-0.00000012456 * reflect}"
+				             izz="0.003326"/>
+
+		    </inertial>
+	      	<collision>
+	        	<origin xyz="0 0 0" rpy="0 ${-PI / 2} 0"/>
 	        	<geometry>
-	          		<mesh filename = "package://canyonero_description/meshes/canyonero_wheel.stl"/>
+	          		<mesh filename = "package://canyonero_description/meshes/canyonero_wheel_collision.stl"/>
 	        	</geometry>
-	      	</collision-->
+	      	</collision>
+	      	<gazebo reference="${sideY}_${sideX}_wheel_link">
+      			<material>Gazebo/Black</material>
+    		</gazebo>
 	    </link>
 
 	    <joint name="${sideY}_${sideX}_wheel_joint" type="continuous">
@@ -39,5 +43,16 @@
 	      	<origin xyz="${wheel_pos_X * positionX} ${wheel_pos_Y * positionY} ${-wheel_pos_Z}" rpy="${(PI / 2) * reflect} 0 0"/>
 	      	<axis xyz="0 0 1"/>
 	    </joint>
+
+			<transmission name="simple_trans">
+			  <type>transmission_interface/SimpleTransmission</type>
+			  <joint name="${sideY}_${sideX}_wheel_joint">
+					<hardwareInterface>EffortJointInterface</hardwareInterface>
+			  </joint>
+			  <actuator name="DC_motor">
+					<mechanicalReduction>1</mechanicalReduction>
+					<hardwareInterface>EffortJointInterface</hardwareInterface>
+			  </actuator>
+			</transmission>
   	</xacro:macro>
 </robot>

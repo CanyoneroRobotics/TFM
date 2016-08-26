@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /TF1
         - /RobotModel1/Links1
         - /RobotModel1/Links1/base_link1
       Splitter Ratio: 0.694767
@@ -69,6 +70,8 @@ Visualization Manager:
           Value: true
         camera_rgb_optical_frame:
           Value: false
+        imu_link:
+          Value: true
         left_back_wheel_link:
           Value: true
         left_frontal_wheel_link:
@@ -77,7 +80,7 @@ Visualization Manager:
           Value: true
         right_frontal_wheel_link:
           Value: true
-      Marker Scale: 1
+      Marker Scale: 0.2
       Name: TF
       Show Arrows: false
       Show Axes: true
@@ -92,6 +95,8 @@ Visualization Manager:
                     {}
                 camera_rgb_optical_frame:
                   {}
+            imu_link:
+              {}
             left_back_wheel_link:
               {}
             left_frontal_wheel_link:
@@ -117,7 +122,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
         base_link:
-          Alpha: 0.99
+          Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
@@ -142,6 +147,11 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         left_back_wheel_link:
           Alpha: 1
           Show Axes: false
@@ -192,22 +202,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 8.30604
+      Distance: 1.5058
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.989638
-        Y: -0.297093
-        Z: 1.79693
+        X: -0.563659
+        Y: 0.135965
+        Z: 0.070173
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.350398
+      Pitch: 0.195398
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.525392
+      Yaw: 6.10358
     Saved: ~
 Window Geometry:
   Displays:
