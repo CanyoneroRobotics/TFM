@@ -68,7 +68,7 @@ Arduino arduino;
 };
 
 void Canyonero::read () {
-        SerialPort::DataBuffer buffer;
+        std::vector<int8_t> buffer;
 
         buffer = arduino.read();
 
@@ -83,7 +83,7 @@ void Canyonero::read () {
 }
 
 void Canyonero::write(){
-        SerialPort::DataBuffer buffer;
+        std::vector<int8_t> buffer;
 
         for(unsigned int i = 0; i<4; i++)
         {

@@ -27,9 +27,9 @@ void Arduino::close()
     serial.Close();
 }
 
-SerialPort::DataBuffer Arduino::read()
+std::vector<int8_t> Arduino::read()
 {
-    SerialPort::DataBuffer buffer;
+    std::vector<int8_t> buffer;
     unsigned int i = 0;
     char c = '\0';
 
@@ -57,7 +57,7 @@ SerialPort::DataBuffer Arduino::read()
     return buffer;
 }
 
-void Arduino::write(SerialPort::DataBuffer buffer)
+void Arduino::write(std::vector<int8_t> buffer)
 {
     serial << '{' << buffer[0] << buffer[1] << buffer[2] << buffer[3] << '}' << std::endl;
 }

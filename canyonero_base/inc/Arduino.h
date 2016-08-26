@@ -10,8 +10,8 @@ class Arduino{
 public:
     Arduino();
     int open();
-    SerialPort::DataBuffer read();
-    void write(SerialPort::DataBuffer buffer);
+    std::vector<int8_t> read();
+    void write(std::vector<int8_t> buffer);
     void close();
 private:
     std::string serialDevice;

@@ -12,7 +12,9 @@
       <param name="dev" value="$(arg joy_dev)" />
     </node>
 
-    <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy" />
+    <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy">
+      <remap from="cmd_vel" to="/canyonero/canyonero_velocity_controller/cmd_vel"/>
+    </node>
   </group>
 
 </launch>
