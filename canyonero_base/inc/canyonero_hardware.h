@@ -5,6 +5,8 @@
 #include "ros/time.h"
 #include "ros/duration.h"
 
+#include "ros/console.h"
+
 #include "Arduino.h"
 
 class Canyonero : public hardware_interface::RobotHW {

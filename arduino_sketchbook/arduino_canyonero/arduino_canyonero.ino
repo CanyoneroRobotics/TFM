@@ -125,9 +125,6 @@ void readFromRoscontrol(void)
   RL_speed = (RL_rads * WHEEL_DIAM_CM / 2) / 100; // rad/s to cm/s to m/s
   RR_speed = (RR_rads * WHEEL_DIAM_CM / 2) / 100; // rad/s to cm/s to m/s
 
-  RL_speed = RL_rads * 255;
-  RR_speed = RR_rads * 255;
-
   if (RL_speed > 255) RL_speed = 255;
   else if (RL_speed < -255) RL_speed = -255;
 
