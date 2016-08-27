@@ -11,7 +11,7 @@
 
 	<xacro:include filename="$(find canyonero_description)/urdf/wheels/canyonero_wheel.urdf.xacro"/>
 
-	<xacro:macro name= "base" params = "name">
+	<xacro:macro name= "wheeled_base" params = "name">
 	<!-- BASE-FOOTPRINT -->
 		<!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin, navigation stack depends on this frame -->
 		<link name = "${name}_footprint"/>
@@ -30,7 +30,7 @@
 				<geometry>
 					<mesh filename = "package://canyonero_description/meshes/canyonero_plates.stl"/>
 				</geometry>
-				<material name = "Red"/>
+				<material name="Red"/>
 			</visual>
 			<collision>
 	      		<origin xyz = "0 0 0" rpy = "0 0 0"/>

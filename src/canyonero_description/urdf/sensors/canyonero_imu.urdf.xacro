@@ -21,7 +21,7 @@
         <geometry>
           <mesh filename = "package://canyonero_description/meshes/9dof_razor_imu.stl" scale="0.1 0.1 0.1"/>
         </geometry>
-        <material name = "Red"/>
+        <material name="Red"/>
       </visual>
       <inertial>
         <mass value="0.01"/>

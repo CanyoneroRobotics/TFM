@@ -16,20 +16,20 @@
 	        	<geometry>
 	          		<mesh filename="package://canyonero_description/meshes/canyonero_wheel.stl"/>
 	        	</geometry>
-	        	<material name = "Black"/>
+	        	<material name="Black"/>
 	      	</visual>
 		    <inertial>
 		    	<origin xyz="0.0 0.0 0.102638" rpy="0 0 0"/>
 		        <mass value="1.419"/>
-		        <inertia ixx="0.01101" ixy="0.0000238" ixz="0.00000223198"
-				        		 iyy="0.01104" iyz="${-0.00000012456 * reflect}"
-				             izz="0.003326"/>
+		        <inertia ixx="0.00305" ixy="0.0" ixz="0.0"
+				        		 iyy="0.00305" iyz="0.0"
+				             izz="0.00512"/>
 
 		    </inertial>
 	      	<collision>
 	        	<origin xyz="0 0 0" rpy="0 ${-PI / 2} 0"/>
 	        	<geometry>
-	          		<mesh filename = "package://canyonero_description/meshes/canyonero_wheel_collision.stl"/>
+	          		<mesh filename="package://canyonero_description/meshes/canyonero_wheel_collision.stl"/>
 	        	</geometry>
 	      	</collision>
 	    </link>

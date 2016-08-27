@@ -17,7 +17,7 @@
 
 
 			<!-- Base -->
-			<xacro:base name="base"/>
+			<xacro:wheeled_base name="base"/>
 
 			<!-- 3D sensor -->
 			<xacro:sensor_kinect parent="base_link"/>

@@ -9,6 +9,7 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
+  <xacro:property name="PI_"	value="3.1415926535897931"/>
   <xacro:macro name="canyonero_sensors_gazebo">
     <!-- Adding kinect camera in Gazebo -->
     <gazebo reference="camera_link">
@@ -16,7 +17,7 @@
         <always_on>true</always_on>
         <update_rate>20.0</update_rate>
         <camera>
-          <horizontal_fov>${60.0*PI/180.0}</horizontal_fov>
+          <horizontal_fov>${60.0*PI_/180.0}</horizontal_fov>
           <image>
             <format>R8G8B8</format>
             <width>640</width>
