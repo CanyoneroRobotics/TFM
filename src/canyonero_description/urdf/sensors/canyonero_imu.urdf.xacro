@@ -10,8 +10,8 @@
 
   <xacro:macro name="imu_sensor" params="parent">
 
-    <joint name="$imu_joint" type="fixed">
-      <origin xyz="${imu_pos_X} ${imu_pos_Y} ${imu_pos_Z}" rpy = "${imu_or_R} ${imu_or_P} ${imu_or_Y}"/>
+    <joint name="imu_joint" type="fixed">
+      <origin xyz = "${imu_pos_X} ${imu_pos_Y} ${imu_pos_Z}" rpy = "${imu_or_R} ${imu_or_P} ${imu_or_Y}"/>
       <parent link="${parent}"/>
       <child link="imu_link"/>
     </joint>
@@ -23,6 +23,12 @@
         </geometry>
         <material name="Red"/>
       </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.27 0.40 0.5"/>
+        </geometry>
+      </collision>
       <inertial>
         <mass value="0.01"/>
         <origin xyz="0 0 0"/>

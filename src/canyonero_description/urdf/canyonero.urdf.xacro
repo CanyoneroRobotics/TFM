@@ -13,20 +13,18 @@
 		<xacro:include filename="$(find canyonero_description)/urdf/canyonero_base.urdf.xacro"/>
 		<xacro:include filename="$(find canyonero_description)/urdf/sensors/canyonero_kinect.urdf.xacro"/>
 		<xacro:include filename="$(find canyonero_description)/urdf/sensors/canyonero_imu.urdf.xacro"/>
-		<xacro:include filename="$(find canyonero_gazebo)/urdf/canyonero_gazebo.urdf.xacro"/>
+		<xacro:include filename="$(find canyonero_gazebo)/urdf/canyonero.gazebo.xacro"/>
 
+		<!-- Base -->
+		<xacro:wheeled_base name="base"/>
 
-			<!-- Base -->
-			<xacro:wheeled_base name="base"/>
+		<!-- 3D sensor -->
+		<xacro:sensor_kinect parent="base_link"/>
 
-			<!-- 3D sensor -->
-			<xacro:sensor_kinect parent="base_link"/>
+		<!-- IMU -->
+		<xacro:imu_sensor parent="base_link"/>
 
-			<!-- IMU -->
-			<xacro:imu_sensor parent="base_link"/>
-
-			<!-- Gazebo -->
-			<xacro:canyonero_robot_gazebo/>
-
+		<!-- Gazebo -->
+		<xacro:canyonero_robot_gazebo/>
 
 </robot>

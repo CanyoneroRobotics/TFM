@@ -48,7 +48,7 @@
 		</link>
 
 		<gazebo reference="${name}_link">
-      <material>Gazebo/Red</material>
+      <material value="Gazebo/Red"/>
     </gazebo>
 
 		<!-- Wheels -->
