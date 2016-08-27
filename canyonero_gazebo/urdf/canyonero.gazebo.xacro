@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find canyonero_gazebo)/urdf/sensors/kinect.gazebo.xacro"/>
+  <xacro:include filename="$(find canyonero_gazebo)/urdf/sensors/imu.gazebo.xacro"/>
+
+  <xacro:macro name="canyonero_robot_gazebo">
+    <!-- Gazebo plugin for ROS Control -->
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>canyonero</robotNamespace>
+      </plugin>
+    </gazebo>
+
+    <!-- Gazebo plugin for Kinect IR sensor -->
+    <xacro:kinect_ir_sensor link_name="camera_link" frame_name="camera_depth_frame" camera_name="kinect"/>
+
+    <!-- Gazebo plugin for Kinect RGB sensor -->
+    <xacro:kinect_rgb_sensor link_name="camera_link" frame_name="camera_rgb_frame" camera_name="kinect"/>
+
+    <!-- Gazebo plugin for IMU sensor -->
+    <xacro:imu_sensor_gazebo link_name="imu_link" imu_topic="imu_data" update_rate="100.0"/>
+
+  </xacro:macro>
+</robot>
