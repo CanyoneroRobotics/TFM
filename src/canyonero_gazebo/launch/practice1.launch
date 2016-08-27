@@ -16,8 +16,6 @@
 
   	<!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-	args="-urdf -model canyonero -param robot_description"/>
+	args="-urdf -model canyonero -param robot_description -z 0.01"/>
 
-	<!-- Spawn a robot into Gazebo -->
-	<!--node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find canyonero_description)/urdf/canyonero.urdf -urdf -z 1 -model canyonero" /-->
 </launch>

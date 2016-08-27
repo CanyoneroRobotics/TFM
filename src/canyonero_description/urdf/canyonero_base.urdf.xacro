@@ -40,27 +40,22 @@
 	    	</collision>
 			<inertial>
 	      		<origin xyz="0.023661 -0.000069 -0.036285" rpy="0 0 0" />
-	      		<mass value = "10"/>
-	      		<inertia ixx="0.5284" ixy="-0.0003498" ixz="0.001138"
-	               		 iyy="0.5262" iyz="0.02108"
-	               		 izz="0.9556"/>
-	    	</inertial>
-				<gazebo reference="${name}_link">
-      		<material>Gazebo/Red</material>
-    		</gazebo>
+	      		<mass value="10"/>
+	      		<inertia ixx="0.27658267" ixy="0.0" ixz="-0.02663389"
+	               		 iyy="0.38926449" iyz="0.0"
+	               		 izz="0.57775046"/>
+	    </inertial>
 		</link>
 
-		<!-- Wheels -->
-	    <xacro:wheel sideX = "frontal" sideY = "left" positionX = "1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}"/>
-	    <xacro:wheel sideX = "frontal" sideY = "right" positionX = "1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}"/>
-	    <xacro:wheel sideX = "back" sideY = "left" positionX = "-1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}"/>
-	    <xacro:wheel sideX = "back" sideY = "right" positionX = "-1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}"/>
+		<gazebo reference="${name}_link">
+      <material>Gazebo/Red</material>
+    </gazebo>
 
-			<gazebo>
-				<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-				<robotNamespace>canyonero</robotNamespace>
-				</plugin>
-			</gazebo>
+		<!-- Wheels -->
+	    <xacro:wheel sideX = "frontal" sideY = "left" positionX = "1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}" />
+	    <xacro:wheel sideX = "frontal" sideY = "right" positionX = "1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}"/>
+	    <xacro:wheel sideX = "back" sideY = "left" positionX = "-1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}"/>
+	    <xacro:wheel sideX = "back" sideY = "right" positionX = "-1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}"/>
 
 	</xacro:macro>
 

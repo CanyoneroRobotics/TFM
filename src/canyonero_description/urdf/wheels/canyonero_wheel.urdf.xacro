@@ -9,7 +9,7 @@
 
 <robot xmlns:xacro = "http://ros.org/wiki/xacro">
 
-	<xacro:macro name="wheel" params="sideY sideX positionY positionX reflect parent">
+	<xacro:macro name="wheel" params="sideY sideX positionY positionX reflect parent torque velocity radius">
 	    <link name="${sideY}_${sideX}_wheel_link">
 	    	<visual>
 	        	<origin xyz = "0 0 0" rpy = "0 ${-PI / 2} 0"/>
@@ -32,9 +32,6 @@
 	          		<mesh filename = "package://canyonero_description/meshes/canyonero_wheel_collision.stl"/>
 	        	</geometry>
 	      	</collision>
-	      	<gazebo reference="${sideY}_${sideX}_wheel_link">
-      			<material>Gazebo/Black</material>
-    		</gazebo>
 	    </link>
 
 	    <joint name="${sideY}_${sideX}_wheel_joint" type="continuous">
@@ -42,17 +39,27 @@
 	      	<child link="${sideY}_${sideX}_wheel_link"/>
 	      	<origin xyz="${wheel_pos_X * positionX} ${wheel_pos_Y * positionY} ${-wheel_pos_Z}" rpy="${(PI / 2) * reflect} 0 0"/>
 	      	<axis xyz="0 0 1"/>
+					<limit effort="${torque}" velocity="${velocity / radius}"/>
 	    </joint>
 
 			<transmission name="simple_trans">
 			  <type>transmission_interface/SimpleTransmission</type>
 			  <joint name="${sideY}_${sideX}_wheel_joint">
-					<hardwareInterface>EffortJointInterface</hardwareInterface>
+					<hardwareInterface>VelocityJointInterface</hardwareInterface>
 			  </joint>
 			  <actuator name="DC_motor">
 					<mechanicalReduction>1</mechanicalReduction>
-					<hardwareInterface>EffortJointInterface</hardwareInterface>
 			  </actuator>
 			</transmission>
+
+			<gazebo reference="${sideY}_${sideX}_wheel_link">
+				<mu1 value="1.0"/>
+				<mu2 value="1.0"/>
+				<kp value="10000000.0" />
+				<kd value="1.0" />
+				<fdir1 value="1 0 0"/>
+				<material>Gazebo/Black</material>
+			</gazebo>
+
   	</xacro:macro>
 </robot>
