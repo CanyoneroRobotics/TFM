@@ -72,13 +72,13 @@ Visualization Manager:
           Value: false
         imu_link:
           Value: true
-        left_back_wheel_link:
+        wheel_rear_left_link:
           Value: true
-        left_frontal_wheel_link:
+        wheel_front_left_link:
           Value: true
-        right_back_wheel_link:
+        wheel_rear_right_link:
           Value: true
-        right_frontal_wheel_link:
+        wheel_front_right_link:
           Value: true
       Marker Scale: 0.2
       Name: TF
@@ -97,13 +97,13 @@ Visualization Manager:
                   {}
             imu_link:
               {}
-            left_back_wheel_link:
+            wheel_rear_left_link:
               {}
-            left_frontal_wheel_link:
+            wheel_front_left_link:
               {}
-            right_back_wheel_link:
+            wheel_rear_right_link:
               {}
-            right_frontal_wheel_link:
+            wheel_front_right_link:
               {}
       Update Interval: 0
       Value: true
@@ -152,22 +152,22 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        left_back_wheel_link:
+        wheel_rear_left_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_frontal_wheel_link:
+        wheel_front_left_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_back_wheel_link:
+        wheel_rear_right_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_frontal_wheel_link:
+        wheel_front_right_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false

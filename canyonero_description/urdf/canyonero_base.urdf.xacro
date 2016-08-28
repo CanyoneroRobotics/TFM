@@ -52,10 +52,10 @@
     </gazebo>
 
 		<!-- Wheels -->
-	    <xacro:wheel sideX = "frontal" sideY = "left" positionX = "1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}" />
-	    <xacro:wheel sideX = "frontal" sideY = "right" positionX = "1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}"/>
-	    <xacro:wheel sideX = "back" sideY = "left" positionX = "-1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}"/>
-	    <xacro:wheel sideX = "back" sideY = "right" positionX = "-1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}"/>
+	    <xacro:wheel sideX = "front" sideY = "left" positionX = "1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}" />
+	    <xacro:wheel sideX = "front" sideY = "right" positionX = "1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}"/>
+	    <xacro:wheel sideX = "rear" sideY = "left" positionX = "-1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}"/>
+	    <xacro:wheel sideX = "rear" sideY = "right" positionX = "-1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}"/>
 
 	</xacro:macro>
 

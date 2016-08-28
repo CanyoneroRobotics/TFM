@@ -10,7 +10,7 @@
 <robot xmlns:xacro = "http://ros.org/wiki/xacro">
 
 	<xacro:macro name="wheel" params="sideY sideX positionY positionX reflect parent torque velocity radius">
-	    <link name="${sideY}_${sideX}_wheel_link">
+	    <link name="wheel_${sideX}_${sideY}_link">
 	    	<visual>
 	        	<origin xyz = "0 0 0" rpy = "0 ${-PI / 2} 0"/>
 	        	<geometry>
@@ -34,9 +34,9 @@
 	      	</collision>
 	    </link>
 
-	    <joint name="${sideY}_${sideX}_wheel_joint" type="continuous">
+	    <joint name="wheel_${sideX}_${sideY}_joint" type="continuous">
 	    	<parent link="${parent}_link"/>
-	      	<child link="${sideY}_${sideX}_wheel_link"/>
+	      	<child link="wheel_${sideX}_${sideY}_link"/>
 	      	<origin xyz="${wheel_pos_X * positionX} ${wheel_pos_Y * positionY} ${-wheel_pos_Z}" rpy="${(PI / 2) * reflect} 0 0"/>
 	      	<axis xyz="0 0 1"/>
 					<limit effort="${torque}" velocity="${velocity / radius}"/>
@@ -44,7 +44,7 @@
 
 			<transmission name="simple_trans">
 			  <type>transmission_interface/SimpleTransmission</type>
-			  <joint name="${sideY}_${sideX}_wheel_joint">
+			  <joint name="wheel_${sideX}_${sideY}_joint">
 					<hardwareInterface>VelocityJointInterface</hardwareInterface>
 			  </joint>
 			  <actuator name="DC_motor">
@@ -52,7 +52,7 @@
 			  </actuator>
 			</transmission>
 
-			<gazebo reference="${sideY}_${sideX}_wheel_link">
+			<gazebo reference="wheel_${sideX}_${sideY}_link">
 				<mu1 value="1.0"/>
 				<mu2 value="1.0"/>
 				<kp value="10000000.0" />
