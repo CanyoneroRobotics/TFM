@@ -1,7 +1,5 @@
 #include "Arduino.h"
 
-#include <SerialStream.h>
-
 Arduino::Arduino()
 {
     serialDevice = "/dev/ttyACM0";

@@ -5,6 +5,7 @@
 #include <SerialStreamBuf.h>
 #include <SerialPort.h>
 #include <string>
+#include <stdint.h>
 
 class Arduino{
 public:
