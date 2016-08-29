@@ -69,15 +69,24 @@ Arduino arduino;
 
 void Canyonero::read () {
         std::vector<int8_t> buffer;
+        uint8_t f_buf[4];
+        float f;
 
         buffer = arduino.read();
 
-        for (unsigned int i = 0; i<4 && i<buffer.size(); i++)
+        for (unsigned int i = 0; i<4; i++)
         {
                 pos[i]=0;
                 eff[i]=0;
 
-                vel[i]=(double)buffer[i];
+                for (unsigned int j = 0; j<4; j++)
+                {
+                    f_buf[j] = buffer[4*i+j];
+                }
+
+                f = f_buf[0] << 24 | f_buf[1] << 16 | f_buf[2] << 8 | f_buf[3];
+
+                vel[i]=(double)f;
                 ROS_INFO("Canyonero::read() -> vel[%d] = %f", i, vel[i]);
         }
 }

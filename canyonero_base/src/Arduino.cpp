@@ -37,14 +37,12 @@ std::vector<int8_t> Arduino::read()
         serial >> c;
     }
 
-    serial >> c;
-    buffer.push_back(c);
-    serial >> c;
-    buffer.push_back(c);
-    serial >> c;
-    buffer.push_back(c);
-    serial >> c;
-    buffer.push_back(c);
+    // Read 4 Arduino float numbers (4 bytes each)
+    for (unsigned int i = 0; i<16; i++)
+    {
+        serial >> c;
+        buffer.push_back(c);
+    }
 
     // Detect End of Packet
     while (c != '}')
