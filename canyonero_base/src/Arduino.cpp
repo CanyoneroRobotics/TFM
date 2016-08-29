@@ -38,7 +38,7 @@ std::vector<int8_t> Arduino::read()
     }
 
     // Read 4 Arduino float numbers (4 bytes each)
-    for (unsigned int i = 0; i<16; i++)
+    for (unsigned int i = 0; i<4; i++)
     {
         serial >> c;
         buffer.push_back(c);
