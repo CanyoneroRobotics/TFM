@@ -71,7 +71,10 @@ void updateRREncoder() {
 
 void writeToRoscontrol(void)
 {
-  uint8_t buf[sizeof(float)];
+  int8_t FL_speed_ms_aux;
+  int8_t FR_speed_ms_aux;
+  int8_t RL_speed_ms_aux;
+  int8_t RR_speed_ms_aux;
 
   dt = millis() - last_time;
   delta_RL_ticks = RL_ticks - last_RL_ticks;
@@ -91,33 +94,30 @@ void writeToRoscontrol(void)
   last_RL_ticks = RL_ticks;
   last_RR_ticks = RR_ticks;
 
+  if (FL_speed_ms*100.0 > 127.0) FL_speed_ms_aux = 127;
+  else if (FL_speed_ms*100.0 < -128) FL_speed_ms_aux = -128;
+  else FL_speed_ms_aux = (int8_t)(FL_speed_ms*100.0);
+  
+  if (FR_speed_ms*100.0 > 127.0) FR_speed_ms_aux = 127;
+  else if (FR_speed_ms*100.0 < -128) FR_speed_ms_aux = -128;
+  else FR_speed_ms_aux = (int8_t)(FR_speed_ms*100.0);
+
+  if (RL_speed_ms*100.0 > 127.0) RL_speed_ms_aux = 127;
+  else if (RL_speed_ms*100.0 < -128) RL_speed_ms_aux = -128;
+  else RL_speed_ms_aux = (int8_t)(RL_speed_ms*100.0);
+  
+  if (RR_speed_ms*100.0 > 127.0) RR_speed_ms_aux = 127;
+  else if (RR_speed_ms*100.0 < -128) RR_speed_ms_aux = -128;
+  else RR_speed_ms_aux = (int8_t)(RR_speed_ms*100.0);
+
   // Start of Packet
   Serial.write('{');
 
   // Speeds - sending float
-  memcpy(&FL_speed_ms, buf, sizeof(FL_speed_ms));
-  Serial.write(buf[0]);
-  Serial.write(buf[1]);
-  Serial.write(buf[2]);
-  Serial.write(buf[3]);
-
-  memcpy(&FR_speed_ms, buf, sizeof(FR_speed_ms));
-  Serial.write(buf[0]);
-  Serial.write(buf[1]);
-  Serial.write(buf[2]);
-  Serial.write(buf[3]);
-
-  memcpy(&RL_speed_ms, buf, sizeof(RL_speed_ms));
-  Serial.write(buf[0]);
-  Serial.write(buf[1]);
-  Serial.write(buf[2]);
-  Serial.write(buf[3]);
-
-  memcpy(&RR_speed_ms, buf, sizeof(RR_speed_ms));
-  Serial.write(buf[0]);
-  Serial.write(buf[1]);
-  Serial.write(buf[2]);
-  Serial.write(buf[3]);
+  Serial.write(FL_speed_ms_aux);
+  Serial.write(FR_speed_ms_aux);
+  Serial.write(RL_speed_ms_aux);
+  Serial.write(RR_speed_ms_aux);
 
   // End of Packet
   Serial.write('}');

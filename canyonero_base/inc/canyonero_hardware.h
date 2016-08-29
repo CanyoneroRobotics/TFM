@@ -79,15 +79,8 @@ void Canyonero::read () {
                 pos[i]=0;
                 eff[i]=0;
 
-                for (unsigned int j = 0; j<4; j++)
-                {
-                    f_buf[j] = buffer[4*i+j];
-                }
-
-                f = f_buf[0] << 24 | f_buf[1] << 16 | f_buf[2] << 8 | f_buf[3];
-
-                vel[i]=(double)f;
-                ROS_INFO("Canyonero::read() -> vel[%d] = %f", i, vel[i]);
+                vel[i]=((double)buffer[i])/100.0;
+                if (vel[i] != 0) ROS_INFO("Canyonero::read() -> vel[%d] = %.3f", i, vel[i]);
         }
 }
 
@@ -96,7 +89,7 @@ void Canyonero::write(){
 
         for(unsigned int i = 0; i<4; i++)
         {
-            ROS_INFO("Canyonero::write() -> cmd[%d] = %f", i, cmd[i]);
+            if (cmd[i] != 0) ROS_INFO("Canyonero::write() -> cmd[%d] = %.3f", i, cmd[i]);
             buffer.push_back((int8_t)cmd[i]);
         }
 
