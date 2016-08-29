@@ -29,7 +29,7 @@
 	<xacro:property name="wheel_pos_Y" value="0.165"/>
 	<xacro:property name="wheel_pos_Z" value="0.068"/>
 	<xacro:property name="wheel_torque" value="1.0"/>
-	<xacro:property name="wheel_velocity" value="1.0"/>
+	<xacro:property name="wheel_velocity" value="3.0"/>
 	<xacro:property name="wheel_radius" value="0.20"/>
 
 	<!-- kinect properties -->
