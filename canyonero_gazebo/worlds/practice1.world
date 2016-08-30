@@ -7,7 +7,7 @@
 		<include>
 			<uri>model://sun</uri>
 		</include>
-		  <model name='practice_1'>
+		<model name='closed_room'>
     <link name='Wall_1'>
       <collision name='Wall_1_Collision'>
         <geometry>
@@ -126,4 +126,5 @@
     </link>
     <static>1</static>
   </model>
+</world>
 </sdf>
