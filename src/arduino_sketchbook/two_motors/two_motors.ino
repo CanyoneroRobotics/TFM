@@ -9,17 +9,20 @@
 #include <ros.h>
 #include <std_msgs/Float32.h>
 #include <std_msgs/Int32.h>
+#include <std_msgs/Int16.h>
 #include <std_msgs/Float32MultiArray.h>
 #include <std_msgs/Int16MultiArray.h>
 
 #define TICK 1330
-#define TICK1 1300
-#define TICK2 840
+#define TICK1 2600
+#define TICK2 3650
 #define PERIMETER 0.62831853
 
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 Adafruit_DCMotor *myMotor1 = AFMS.getMotor(1);
-Adafruit_DCMotor *myMotor2 = AFMS.getMotor(3);
+Adafruit_DCMotor *myMotor2 = AFMS.getMotor(2);
+Adafruit_DCMotor *myMotor3 = AFMS.getMotor(3);
+Adafruit_DCMotor *myMotor4 = AFMS.getMotor(4);
 
 //ROS Variables
 ros::NodeHandle nh;
@@ -29,6 +32,9 @@ float tmp;
 //std_msgs::Int32 encoder1_msg;
 //std_msgs::Int32 encoder2_msg;
 std_msgs::Float32MultiArray wheelsVel_msg;
+
+std_msgs::Int16 wheelVel1_msg;
+std_msgs::Int16 wheelVel2_msg;
 
 //ENCODERS Variables
 volatile long encoder1Value = 0;
@@ -72,11 +78,9 @@ void updateEncoder1(){
   
    // look for a low-to-high on channel A
   if (vel1 > 0) { 
-   
       encoder1Value ++;         // CW
   }
   else if (vel1 < 0){   // must be a high-to-low edge on channel A                                       
-   
       encoder1Value --;          // CCW
   }
 }
@@ -99,6 +103,8 @@ ros::Subscriber<std_msgs::Int16MultiArray> sub_control("/motors_control", &motor
 //ros::Publisher encoder1_pub("/motor1_encoder", &encoder1_msg);
 //ros::Publisher encoder2_pub("/motor2_encoder", &encoder2_msg);
 ros::Publisher wheelsVel_pub("/wheels_vel", &wheelsVel_msg);
+//ros::Publisher wheelVel1_pub("/wheel1_vel", &wheelVel1_msg);
+//ros::Publisher wheelVel2_pub("/wheel2_vel", &wheelVel1_msg);
 
 void setup() {
   // put your setup code here, to run once:
@@ -106,6 +112,8 @@ void setup() {
   vel2 = 0;
   //encoder1_msg.data = 0;
   //encoder2_msg.data = 0;
+  
+  wheelsVel_msg.data_length = 2;
   wheelsVel_msg.data[0] = 0;
   wheelsVel_msg.data[1] = 0;
 
@@ -116,13 +124,9 @@ void setup() {
   // pin                  2         3      21      20      19      18
   pinMode(19, INPUT); 
   pinMode(18, INPUT);
-  //pinMode(22, INPUT); 
-  //pinMode(23, INPUT);
 
   digitalWrite(19, HIGH); //turn pullup resistor on
   digitalWrite(18, HIGH); //turn pullup resistor on
-  //digitalWrite(22, HIGH); //turn pullup resistor on
-  //digitalWrite(23, HIGH); //turn pullup resistor ons
 
   attachInterrupt(4, updateEncoder1, CHANGE); // Also LOW, RISING, FALLING
   attachInterrupt(5, updateEncoder2, CHANGE); // Also LOW, RISING, FALLING
@@ -130,42 +134,48 @@ void setup() {
   AFMS.begin(); // create with the default frequency 1.6KHz
   //AFMS.begin(1000); // OR with a different frequency, say 1KHz
   
-  pinMode(13, OUTPUT);
-  
   nh.getHardware()->setBaud(9600);
   nh.initNode();
+  
   //nh.subscribe(sub_vel1);
   //nh.subscribe(sub_vel2);
   //nh.advertise(encoder1_pub);
   //nh.advertise(encoder2_pub);
 
-  wheelsVel_msg.data_length = 2;
   
   nh.subscribe(sub_control);
   nh.advertise(wheelsVel_pub);
+  //nh.advertise(wheelVel1_pub);
+  //nh.advertise(wheelVel2_pub);
 
 }
 
 void loop() {
+  
   // put your main code here, to run repeatedly:
   if(vel1 >= 0){
     myMotor1->setSpeed(vel1);
+    myMotor2->setSpeed(vel1);
     myMotor1->run(FORWARD);
+    myMotor2->run(FORWARD);
   }else if(vel1 < 0){
     myMotor1->setSpeed(abs(vel1));
+    myMotor2->setSpeed(abs(vel1));
     myMotor1->run(BACKWARD);
+    myMotor2->run(BACKWARD);
   }
 
   if(vel2 >= 0){
-    myMotor2->setSpeed(vel2);
-    myMotor2->run(BACKWARD);
+    myMotor3->setSpeed(vel2);
+    myMotor4->setSpeed(vel2);
+    myMotor3->run(BACKWARD);
+    myMotor4->run(BACKWARD);
   }else if(vel2 < 0){
-    myMotor2->setSpeed(abs(vel2));
-    myMotor2->run(FORWARD);
+    myMotor3->setSpeed(abs(vel2));
+    myMotor4->setSpeed(abs(vel2));
+    myMotor3->run(FORWARD);
+    myMotor4->run(FORWARD);
   }
-
-  //encoder1_pub.publish(&encoder1_msg);
-  //encoder2_pub.publish(&encoder2_msg);
 
   //compute delta the time between loops
   current_time = micros();
@@ -176,16 +186,21 @@ void loop() {
   wheel1_vel = (((encoder1Value-lastEncoder1)*(PERIMETER/TICK1))/dt);
   wheel2_vel = (-1)*(((encoder2Value-lastEncoder2)*(PERIMETER/TICK2))/dt);
 
-  //wheelsVel_msg.data[0] = (encoder1Value-lastEncoder1)*(PERIMETER/TICK1);
-  //wheelsVel_msg.data[1] = (-1)*(encoder2Value-lastEncoder2)*(PERIMETER/TICK2);
+  //wheel1_vel = (encoder1Value);// - lastEncoder1);
+  //wheel2_vel = (encoder2Value);// - lastEncoder2);
 
   wheelsVel_msg.data[0] = wheel1_vel;
   wheelsVel_msg.data[1] = wheel2_vel;
+
+  //wheelVel1_msg.data = wheel1_vel;
+  //wheelVel2_msg.data = wheel2_vel;
 
   lastEncoder1 = encoder1Value;
   lastEncoder2 = encoder2Value;
   
   wheelsVel_pub.publish(&wheelsVel_msg);
-  
+  //wheelVel1_pub.publish(&wheelVel1_msg);
+  //wheelVel2_pub.publish(&wheelVel2_msg);
+
   nh.spinOnce();
 }

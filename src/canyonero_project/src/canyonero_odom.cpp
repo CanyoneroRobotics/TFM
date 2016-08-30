@@ -41,6 +41,8 @@ int main(int argc, char** argv) {
 
   CanyoneroOdomNode canyonero_odom;
 
+  ros::Rate r(10);
+
   double tmp_x = 0.0, tmp_y = 0.0, tmp_th = 0.0;
   double dt = 0.0, last_time = 0.0, current_time = 0.0;
   double v_linear = 0.0, v_angular = 0.0;
@@ -51,11 +53,8 @@ int main(int argc, char** argv) {
 
       ros::spinOnce();
 
-      ROS_INFO_STREAM("1");
       if(canyonero_odom.hasWheelsVelocities){
 
-
-          ROS_INFO_STREAM("2");
           //compute velocity of robot frame
           v_angular = ((canyonero_odom.v1 - canyonero_odom.v2)/DISTANCEWHEELS);
           v_linear = (canyonero_odom.v1 + canyonero_odom.v2)/2;
@@ -121,8 +120,7 @@ int main(int argc, char** argv) {
 
           canyonero_odom.hasWheelsVelocities = false;
       }
-      sleep(10);
+      r.sleep();
   }
-  ROS_INFO_STREAM("3");
   return 0;
 }

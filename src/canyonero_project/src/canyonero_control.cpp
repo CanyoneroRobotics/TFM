@@ -78,11 +78,12 @@ int main(int argc, char** argv) {
 
   ROS_INFO_STREAM("Canyonero Control Started");
 
-  ros::Rate r(10);
+  ros::Rate r(20);
 
   while(ros::ok()){
 
       ros::spinOnce();
+      r.sleep();
 
   }
 
