@@ -9,12 +9,9 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-	<xacro:include filename="$(find canyonero_description)/urdf/canyonero_wheel.urdf.xacro"/>
-
-	<property name="pos_Z2"       value="1.67"/>
+	<xacro:include filename="$(find canyonero_description)/urdf/wheels/canyonero_wheel.urdf.xacro"/>
 
 	<xacro:macro name= "base" params = "name">
-
 	<!-- BASE-FOOTPRINT -->
 		<!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin, navigation stack depends on this frame -->
 		<link name = "${name}_footprint"/>
@@ -22,7 +19,7 @@
 		<joint name = "${name}_footprint_joint" type = "fixed">
 			<parent link = "${name}_footprint"/>
 			<child link = "${name}_link"/>
-			<origin xyz = "0 0 ${pos_Z2}" rpy = "0 0 0"/>
+			<origin xyz = "0 0 ${rob_pos_Z}" rpy = "0 0 0"/>
 		</joint>
 
 		<!-- BASE-LINK -->
@@ -33,34 +30,38 @@
 				<geometry>
 					<mesh filename = "package://canyonero_description/meshes/canyonero_plates.stl"/>
 				</geometry>
-				<material name = "cambot/red">
-					<color rgba = "1.0 0.0 0.0 1"/>
-				</material>
+				<material name = "Red"/>
 			</visual>
-			<!--collision>
+			<collision>
 	      		<origin xyz = "0 0 0" rpy = "0 0 0"/>
 	      		<geometry>
 	        		<mesh filename = "package://canyonero_description/meshes/canyonero_plates_collision.stl"/>
 	      		</geometry>
-	    	</collision-->
+	    	</collision>
 			<inertial>
-	      		<origin rpy = "0 0 0" xyz = "174.84e-3 117.51e-3 -218.86e-3"/>
-	      		<mass value = "15.23"/>
-	      		<!-- inertia at cm or origin?-->
-	      		<inertia ixx = "0.016258"
-	               		 ixy = "0.000432"
-	               		 ixz="-0.000049"
-	               		 iyy="0.019275"
-	               		 iyz="0.000048"
-	               		 izz="0.016834"/>
+	      		<origin xyz="0.023661 -0.000069 -0.036285" rpy="0 0 0" />
+	      		<mass value = "10"/>
+	      		<inertia ixx="0.5284" ixy="-0.0003498" ixz="0.001138"
+	               		 iyy="0.5262" iyz="0.02108"
+	               		 izz="0.9556"/>
 	    	</inertial>
+				<gazebo reference="${name}_link">
+      		<material>Gazebo/Red</material>
+    		</gazebo>
 		</link>
 
 		<!-- Wheels -->
-	    <xacro:wheel sideY = "frontal" sideX = "left" positionY = "1.0" positionX = "1.0" reflect = "-1.0" parent = "${name}"/>
-	    <xacro:wheel sideY = "frontal" sideX = "right" positionY = "1.0" positionX = "-1.0" reflect = "1.0" parent = "${name}"/>
-	    <xacro:wheel sideY = "back" sideX = "left" positionY = "-1.0" positionX = "1.0" reflect = "-1.0" parent = "${name}"/>
-	    <xacro:wheel sideY = "back" sideX = "right" positionY = "-1.0" positionX = "-1.0" reflect = "1.0" parent = "${name}"/>
+	    <xacro:wheel sideX = "frontal" sideY = "left" positionX = "1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}"/>
+	    <xacro:wheel sideX = "frontal" sideY = "right" positionX = "1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}"/>
+	    <xacro:wheel sideX = "back" sideY = "left" positionX = "-1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}"/>
+	    <xacro:wheel sideX = "back" sideY = "right" positionX = "-1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}"/>
+
+			<gazebo>
+				<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+				<robotNamespace>canyonero</robotNamespace>
+				</plugin>
+			</gazebo>
+
 	</xacro:macro>
 
 </robot>

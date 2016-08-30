@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="imu_sensor" params="parent update_rate">
+
+    <joint name="$imu_joint" type="fixed">
+      <origin xyz = "${imu_pos_X} ${imu_pos_Y} ${imu_pos_Z}" rpy = "${imu_or_R} ${imu_or_P} ${imu_or_Y}"/>
+      <parent link="${parent}"/>
+      <child link="imu_link"/>
+    </joint>
+    <link name="imu_link">
+      <visual>
+        <origin xyz = "0 0 0" rpy = "0 0 0" />
+        <geometry>
+          <mesh filename = "package://canyonero_description/meshes/9dof_razor_imu.stl" scale="0.1 0.1 0.1"/>
+        </geometry>
+        <material name = "Red"/>
+      </visual>
+      <inertial>
+        <mass value="0.01"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.0000001" ixy="0.0" ixz="0.0" iyy="0.0000001" iyz="0.0" izz="0.0000001"/>
+      </inertial>
+    </link>
+
+
+    <gazebo reference="imu_link">
+      <sensor name="imu_sensor" type="imu">
+        <always_on>1</always_on>
+        <update_rate>100.0</update_rate>
+        <imu>
+          <noise>
+            <type>gaussian</type>
+            <rate>
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+              <bias_mean>0.0000075</bias_mean>
+              <bias_stddev>0.0000008</bias_stddev>
+            </rate>
+            <accel>
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+              <bias_mean>0.1</bias_mean>
+              <bias_stddev>0.001</bias_stddev>
+            </accel>
+          </noise>
+        </imu>
+      </sensor>
+      <material>Gazebo/Red</material>
+    </gazebo>
+  </xacro:macro>
+
+</robot>
