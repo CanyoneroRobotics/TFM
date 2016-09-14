@@ -97,7 +97,7 @@ void writeToRoscontrol(void)
   if (FL_speed_ms*100.0 > 127.0) FL_speed_ms_aux = 127;
   else if (FL_speed_ms*100.0 < -128) FL_speed_ms_aux = -128;
   else FL_speed_ms_aux = (int8_t)(FL_speed_ms*100.0);
-  
+
   if (FR_speed_ms*100.0 > 127.0) FR_speed_ms_aux = 127;
   else if (FR_speed_ms*100.0 < -128) FR_speed_ms_aux = -128;
   else FR_speed_ms_aux = (int8_t)(FR_speed_ms*100.0);
@@ -105,7 +105,7 @@ void writeToRoscontrol(void)
   if (RL_speed_ms*100.0 > 127.0) RL_speed_ms_aux = 127;
   else if (RL_speed_ms*100.0 < -128) RL_speed_ms_aux = -128;
   else RL_speed_ms_aux = (int8_t)(RL_speed_ms*100.0);
-  
+
   if (RR_speed_ms*100.0 > 127.0) RR_speed_ms_aux = 127;
   else if (RR_speed_ms*100.0 < -128) RR_speed_ms_aux = -128;
   else RR_speed_ms_aux = (int8_t)(RR_speed_ms*100.0);
@@ -129,7 +129,7 @@ void readFromRoscontrol(void)
   float RR_speed_cms;
   int RL_speed_ms_aux;
   int RR_speed_ms_aux;
-  
+
   char c = '\0';
   unsigned long timeout = millis();
 
@@ -165,7 +165,7 @@ void readFromRoscontrol(void)
   if (c == EOP) // End of packet detected, let's process the commands
   {
     digitalWrite(13, HIGH);
-    
+
     RL_speed_cms = ((float)RL_speed_cmd * WHEEL_DIAM_CM / 2.0); // rad/s to cm/s
     RR_speed_cms = ((float)RR_speed_cmd * WHEEL_DIAM_CM / 2.0); // rad/s to cm/s
 
@@ -269,4 +269,3 @@ void loop() {
   readFromRoscontrol();
   delay(50);
 }
-
