@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
+-->
+<robot name="sensor_kinect" xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<!-- Parameterised in part by the values in canyonero_properties.urdf.xacro -->
+  <xacro:macro name="sensor_kinect" params="parent">
+  	<joint name="camera_joint" type="fixed">
+  		<origin xyz="${cam_pos_X} ${cam_pos_Y} ${cam_pos_Z}" rpy="0 0 0"/>
+  		<parent link="${parent}"/>
+  		<child link="camera_link"/>
+  	</joint>
+  	<link name="camera_link">
+      <visual>
+       <origin xyz="0 0 0" rpy="${cam_or_R} ${cam_or_P} ${cam_or_Y}"/>
+        <geometry>
+         <mesh filename="package://canyonero_description/meshes/kinect.stl" scale="0.1 0.1 0.1"/>
+        </geometry>
+        <material name="DarkGrey" />
+      </visual>
+  	  <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  	    <geometry>
+  	      <box size="0.07271 0.27794 0.073"/>
+  	    </geometry>
+  	  </collision>
+      <inertial>
+        <mass value="0.564" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.003881243" ixy="0.0" ixz="0.0"
+                 iyy="0.000498940" iyz="0.0"
+                 izz="0.003879257" />
+      </inertial>
+      <gazebo reference="camera_link">
+        <material>Gazebo/Black</material>
+      </gazebo>
+    </link>
+
+    <!-- RGB camera -->
+    <joint name="camera_rgb_joint" type="fixed">
+      <origin xyz="${cam_px} ${cam_py} ${cam_pz}" rpy="${cam_or} ${cam_oy} ${cam_op}"/>
+      <parent link="camera_link"/>
+      <child link="camera_rgb_frame" />
+    </joint>
+    <link name="camera_rgb_frame"/>
+
+    <joint name="camera_rgb_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="${-PI/2} 0 ${-PI/2}" />
+      <parent link="camera_rgb_frame" />
+      <child link="camera_rgb_optical_frame" />
+    </joint>
+    <link name="camera_rgb_optical_frame"/>
+
+    <!-- Depth camera -->
+    <joint name="camera_depth_joint" type="fixed">
+	  	<origin xyz="0 ${2.4 * -cam_py} 0" rpy="0 0 0" />
+	  	<parent link="camera_rgb_frame" />
+	  	<child link="camera_depth_frame" />
+		</joint>
+		<link name="camera_depth_frame"/>
+
+		<joint name="camera_depth_optical_joint" type="fixed">
+	  	<origin xyz="0 0 0" rpy="${-PI/2} 0 ${-PI/2}" />
+	  	<parent link="camera_depth_frame" />
+	  	<child link="camera_depth_optical_frame" />
+		</joint>
+		<link name="camera_depth_optical_frame"/>
+
+	</xacro:macro>
+</robot>

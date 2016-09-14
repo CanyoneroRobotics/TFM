@@ -1,0 +1,710 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"roo",
+				"robot_description"
+			],
+			[
+				"canyonero",
+				"canyonero_description"
+			],
+			[
+				"inertia",
+				"inertial"
+			],
+			[
+				"cam_o",
+				"cam_op"
+			],
+			[
+				"cam",
+				"cam_oy"
+			],
+			[
+				"cam_p",
+				"cam_px"
+			],
+			[
+				"side",
+				"sideY"
+			],
+			[
+				"pos",
+				"pos_Y"
+			],
+			[
+				"pos_",
+				"pos_X"
+			],
+			[
+				"z",
+				"z_pred"
+			],
+			[
+				"X",
+				"X_pred"
+			],
+			[
+				"Groun",
+				"GroundTruthCallback"
+			],
+			[
+				"Es",
+				"EstimatorNode"
+			],
+			[
+				"d",
+				"dT"
+			],
+			[
+				"P",
+				"P_pred"
+			],
+			[
+				"imu",
+				"imu_msg"
+			],
+			[
+				"pose",
+				"pose_msg"
+			],
+			[
+				"si",
+				"sigma_x"
+			],
+			[
+				"dT",
+				"dT_3"
+			],
+			[
+				"Matri",
+				"MatrixXd"
+			],
+			[
+				"vecto",
+				"vector3"
+			],
+			[
+				"rota",
+				"rotateZ"
+			],
+			[
+				"vect",
+				"vector3"
+			],
+			[
+				"latest",
+				"latest_pose"
+			],
+			[
+				"yaw",
+				"yaw_rate"
+			],
+			[
+				"cmd",
+				"x_vel_cmd"
+			],
+			[
+				"p",
+				"pose"
+			],
+			[
+				"ROS",
+				"ROS_INFO"
+			],
+			[
+				"err",
+				"error"
+			],
+			[
+				"x_",
+				"x_integral_limit"
+			],
+			[
+				"pitc",
+				"pitch_cmd"
+			],
+			[
+				"kp",
+				"kp_yaw"
+			],
+			[
+				"k",
+				"kp_x"
+			],
+			[
+				"integral_",
+				"integral_limit_negative"
+			],
+			[
+				"dE_",
+				"dE_x"
+			],
+			[
+				"inte",
+				"integral_error_accumulator_yaw"
+			],
+			[
+				"z_",
+				"z_ki"
+			],
+			[
+				"y_",
+				"y_ki"
+			],
+			[
+				"x",
+				"x_ki"
+			],
+			[
+				"kp_y",
+				"kp_yaw"
+			],
+			[
+				"dE",
+				"dE_yaw"
+			],
+			[
+				"int",
+				"integral_error_accumulator_yaw"
+			],
+			[
+				"in",
+				"integral_error_accumulator_z"
+			],
+			[
+				"lates",
+				"latest_pose"
+			],
+			[
+				"set",
+				"setpoint_yaw"
+			],
+			[
+				"integr",
+				"integral_limit_positive"
+			],
+			[
+				"roll",
+				"roll_cmd"
+			],
+			[
+				"erro",
+				"error"
+			],
+			[
+				"integral",
+				"integral_error_accumulator"
+			],
+			[
+				"late",
+				"latest_pose"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "<?xml version=\"1.0\"?>\n<!--\n\n  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.\n  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to\n  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.\n\n-->\n<robot xmlns:xacro=\"http://ros.org/wiki/xacro\">\n  <xacro:include filename=\"$(find canyonero_gazebo)/urdf/sensors/kinect.gazebo.xacro\"/>\n  <xacro:include filename=\"$(find canyonero_gazebo)/urdf/sensors/imu.gazebo.xacro\"/>\n\n  <xacro:macro name=\"canyonero_robot_gazebo\">\n    <!-- Gazebo plugin for ROS Control -->\n    <gazebo>\n      <plugin name=\"gazebo_ros_control\" filename=\"libgazebo_ros_control.so\">\n        <robotNamespace>canyonero</robotNamespace>\n      </plugin>\n    </gazebo>\n\n    <!-- Gazebo plugin for Kinect IR sensor -->\n    <xacro:kinect_ir_sensor link_name=\"camera_link\" frame_name=\"camera_depth_frame\" camera_name=\"kinect\"/>\n\n    <!-- Gazebo plugin for Kinect RGB sensor -->\n    <xacro:kinect_rgb_sensor link_name=\"camera_link\" frame_name=\"camera_rgb_frame\" camera_name=\"kinect\"/>\n\n    <!-- Gazebo plugin for IMU sensor -->\n    <xacro:imu_sensor_gazebo link_name=\"imu_link\" imu_topic=\"imu_data\" update_rate=\"100.0\"/>\n\n  </xacro:macro>\n</robot>",
+			"file": "/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/urdf/canyonero.gazebo.xacro",
+			"file_size": 1296,
+			"file_write_time": 131167853770196708,
+			"settings":
+			{
+				"buffer_size": 1296,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "canyonero.urdf.xacro",
+			"settings":
+			{
+				"buffer_size": 1117,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sensors/canyonero_imu.urdf.xacro",
+			"settings":
+			{
+				"buffer_size": 1342,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/urdf/sensors/imu.gazebo.xacro",
+			"settings":
+			{
+				"buffer_size": 1375,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wheels/canyonero_wheel.urdf.xacro",
+			"settings":
+			{
+				"buffer_size": 2301,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/worlds/practice1.world",
+			"settings":
+			{
+				"buffer_size": 3322,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/launch/practice1.launch",
+			"settings":
+			{
+				"buffer_size": 877,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 336.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/urdf",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/urdf/sensors",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/urdf/wheels",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo"
+	],
+	"file_history":
+	[
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/urdf/wheels/canyonero_wheel.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/urdf/canyonero_base.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/urdf/sensors/kinect.gazebo.xacro",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/urdf/sensors/imu.gazebo.xacro",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/urdf/canyonero_sensors_gazebo.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/urdf/sensors/canyonero_kinect.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/urdf/Sensors/kinect.gazebo.xacro",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/worlds/practice1.world",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/launch/practice1.launch",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/robots/show_gazebo.launch",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/urdf/sensors/canyonero_imu.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/urdf/canyonero.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/husky_simulator/husky_gazebo/launch/spawn_husky.launch",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/urdf/wheels/canyonero_wheel.transmission.xacro",
+		"/home/marcgenevat/catkin_ws/src/pmb2_robot/pmb2_description/gazebo/gazebo.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/urdf/canyonero.urdf",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/urdf/canyonero_wheel.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/robots/show.launch",
+		"/home/marcgenevat/object.urdf",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/urdf/canyonero_wheel.transmission.xacro",
+		"/home/marcgenevat/catkin_ws/src/pmb2_robot/pmb2_description/urdf/base/base.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/pmb2_robot/pmb2_description/robots/pmb2_full.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/docs/Canyonero_constants_xacro.txt",
+		"/home/marcgenevat/catkin_ws/src/pmb2_robot/pmb2_description/urdf/wheels/wheel.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_description/robots/show2.launch",
+		"/home/marcgenevat/catkin_ws/src/pmb2_robot/pmb2_description/robots/show.launch",
+		"/home/marcgenevat/catkin_ws/src/pmb2_robot/pmb2_description/robots/upload_pmb2.launch",
+		"/home/marcgenevat/catkin_ws/src/tiago_robot/tiago_description/urdf/arm/arm.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/pmb2_robot/pmb2_description/urdf/wheels/wheel.transmission.xacro",
+		"/home/marcgenevat/catkin_ws/src/tiago_robot/tiago_description/robots/tiago_steel.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/turtlebot/turtlebot_description/urdf/turtlebot_library.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/turtlebot/turtlebot_description/robots/kobuki_hexagons_kinect.urdf.xacro",
+		"/home/marcgenevat/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/marcgenevat/catkin_ws/src/tiago_robot/tiago_description/urdf/arm/arm.transmission.xacro",
+		"/home/marcgenevat/catkin_ws/src/tiago_robot/tiago_description/gazebo/gazebo.urdf.xacro",
+		"/home/marcgenevat/catkin_ws/src/tiago_robot/tiago_description/urdf/sensors/openni.gazebo.xacro",
+		"/home/marcgenevat/catkin_ws/src/turtlebot/turtlebot_description/urdf/sensors/kinect.urdf.xacro",
+		"/home/marcgenevat/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/marcgenevat/catkin_ws/src/cambot/cambot_description/urdf/cambot.urdf",
+		"/home/marcgenevat/catkin_ws/src/quadrotor_lab/src/control-V2.cpp",
+		"/home/marcgenevat/catkin_ws/src/cambot/cambot_kalman_filter_V2/src/cambot_kalman_filter_V2_node.cpp",
+		"/home/marcgenevat/catkin_ws/src/cambot/cambot_kalman_filter/src/cambot_kalman_filter_node.cpp",
+		"/home/marcgenevat/catkin_ws/src/rotors_exercise/src/estimator.cpp",
+		"/home/marcgenevat/catkin_ws/src/rotors_exercise/src/estimator.h",
+		"/home/marcgenevat/p5/p5-zip/empty-example/index.html",
+		"/home/marcgenevat/p5/p5-zip/empty-example/test.js",
+		"/home/marcgenevat/catkin_ws/src/quadrotor_lab/src/control.cpp",
+		"/home/marcgenevat/catkin_ws/src/quadrotor_lab/cfg/ARdrone_Controller.cfg",
+		"/home/marcgenevat/rotors_exercise/src/control.cpp",
+		"/home/marcgenevat/catkin_ws/src/rotors_exercise/src/control.cpp"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"name",
+			"M_PI",
+			"parent",
+			"maxRoll",
+			"maxYaw",
+			"yaw_rate",
+			"latest_y",
+			"latest",
+			"PI",
+			"latest_yaw",
+			"x_vel_cmd",
+			"ROS_INFO",
+			"latest_pose",
+			"}",
+			"control_loop_period",
+			"timerCallback",
+			"setP",
+			"integral_error_accumulator_X",
+			"//config.x_kp, ",
+			"/config.x_kp, ",
+			"PI",
+			"integral_error_accumulator_x",
+			"kp_x"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"PI"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/urdf/canyonero.gazebo.xacro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1296,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1210,
+								1210
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 234.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "canyonero.urdf.xacro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1117,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								983,
+								983
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "sensors/canyonero_imu.urdf.xacro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1342,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								423,
+								423
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/urdf/sensors/imu.gazebo.xacro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1375,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1334,
+								1334
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 432.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "wheels/canyonero_wheel.urdf.xacro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2301,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2207,
+								2207
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 810.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/worlds/practice1.world",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3322,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3060,
+								3060
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1566.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/marcgenevat/catkin_ws/src/TFM/src/canyonero_gazebo/launch/practice1.launch",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 877,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "canyonero.urdf.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 180.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+<group ns="canyonero">
+    <!-- Load robot description -->
+    <!--<include file="$(find canyonero_description)/launch/description.launch"/>-->
+
+    <!-- Canyonero hadware driver -->
+    <node pkg="canyonero_base" type="canyonero_node" name="canyonero_node" output="screen">
+    </node>
+</group>
+
+    <!-- Differential controller parameters -->
+    <include file="$(find canyonero_control)/launch/control.launch" />
+
+    <!--Teleop -->
+    <include file="$(find canyonero_control)/launch/teleop.launch" />
+
+
+</launch>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+<group ns="canyonero">
+  <rosparam command="load" file="$(find canyonero_control)/config/control.yaml" />
+
+  <node name="base_controller_spawner" pkg="controller_manager" type="spawner" args="canyonero_joint_publisher canyonero_velocity_controller --shutdown-timeout 3"/>
+</group>
+</launch>

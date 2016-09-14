@@ -1,0 +1,23 @@
+<launch>
+
+	<!-- Practice worlds -->
+	<include file="$(find canyonero_gazebo)/launch/practice_worlds.launch"/>
+
+	<!-- Bring up robot -->
+	<include file="$(find canyonero_gazebo)/launch/canyonero_bringup.launch"/>
+
+	<!-- Sim params -->
+	<arg name="paused" default="false"/>
+  	<arg name="use_sim_time" default="true"/>
+  	<arg name="gui" default="true"/>
+  	<arg name="headless" default="false"/>
+  	<arg name="debug" default="false"/>
+
+	<!-- Load the URDF into the ROS Parameter Server -->
+  	<param name="robot_description" command="$(find xacro)/xacro.py '$(find canyonero_description)/urdf/canyonero.urdf.xacro'" />
+
+  	<!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+	args="-urdf -model canyonero -param robot_description -z 0.01"/>
+
+</launch>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find canyonero_description)/urdf/wheels/canyonero_wheel.urdf.xacro"/>
+
+	<xacro:macro name= "wheeled_base" params = "name">
+	<!-- BASE-FOOTPRINT -->
+		<!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin, navigation stack depends on this frame -->
+		<link name = "${name}_footprint"/>
+
+		<joint name = "${name}_footprint_joint" type = "fixed">
+			<parent link = "${name}_footprint"/>
+			<child link = "${name}_link"/>
+			<origin xyz = "0 0 ${rob_pos_Z}" rpy = "0 0 0"/>
+		</joint>
+
+		<!-- BASE-LINK -->
+	    <!--Actual body/chassis of the robot-->
+		<link name = "${name}_link">
+			<visual>
+				<origin xyz = "0 0 0" rpy = "0 0 0"/>
+				<geometry>
+					<mesh filename = "package://canyonero_description/meshes/canyonero_plates.stl"/>
+				</geometry>
+				<material name="Red"/>
+			</visual>
+			<collision>
+	      		<origin xyz = "0 0 0" rpy = "0 0 0"/>
+	      		<geometry>
+	        		<mesh filename = "package://canyonero_description/meshes/canyonero_plates_collision.stl"/>
+	      		</geometry>
+	    	</collision>
+			<inertial>
+	      		<origin xyz="0.023661 -0.000069 -0.036285" rpy="0 0 0" />
+	      		<mass value="10"/>
+	      		<inertia ixx="0.27658267" ixy="0.0" ixz="-0.02663389"
+	               		 iyy="0.38926449" iyz="0.0"
+	               		 izz="0.57775046"/>
+	    </inertial>
+		</link>
+
+		<gazebo reference="${name}_link">
+      <material value="Gazebo/Red"/>
+    </gazebo>
+
+		<!-- Wheels -->
+	    <xacro:wheel sideX = "front" sideY = "left" positionX = "1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}" />
+	    <xacro:wheel sideX = "front" sideY = "right" positionX = "1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}"/>
+	    <xacro:wheel sideX = "rear" sideY = "left" positionX = "-1.0" positionY = "1.0" reflect = "-1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}"/>
+	    <xacro:wheel sideX = "rear" sideY = "right" positionX = "-1.0" positionY = "-1.0" reflect = "1.0" parent = "${name}" torque="${wheel_torque}" velocity="${wheel_velocity}" radius="${wheel_radius}"/>
+
+	</xacro:macro>
+
+</robot>
