@@ -1,9 +1,10 @@
 <launch>
 	<arg name="practice1" default="false"/>
 	<arg name="practice2" default="false"/>
-	<arg name="practice3" default="false"/>
+	<!--arg name="practice3" default="false"/>
 	<arg name="practice4" default="false"/>
-	<arg name="practice5" default="false"/>
+	<arg name="practice5" default="false"/-->
+
 
 	<!-- Adding empty_world.launch and practice worlds -->
 	<group if="$(arg practice1)">
@@ -18,7 +19,7 @@
 		</include>
 	</group>
 
-	<group if="$(arg practice3)">
+	<!--group if="$(arg practice3)">
 		<include file="$(find gazebo_ros)/launch/empty_world.launch">
 			<arg name="world_name" value="$(find canyonero_gazebo)/worlds/practice3.world"/>
 		</include>
@@ -34,5 +35,5 @@
 		<include file="$(find gazebo_ros)/launch/empty_world.launch">
 			<arg name="world_name" value="$(find canyonero_gazebo)/worlds/practice5.world"/>
 		</include>
-	</group>
+	</group-->
 </launch>

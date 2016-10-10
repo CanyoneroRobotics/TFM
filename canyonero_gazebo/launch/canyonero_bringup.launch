@@ -1,11 +1,7 @@
 <launch>
 
-	<arg name="teleop" default="true"/>
-
 	<!--Teleop -->
-	<group if="$(arg teleop)">
-		<include file="$(find canyonero_control)/launch/teleop.launch" />
-	</group>
+	<include file="$(find canyonero_control)/launch/teleop.launch" />
     
     <!-- Load Canyonero control information -->
   	<include file="$(find canyonero_control)/launch/control.launch"/>

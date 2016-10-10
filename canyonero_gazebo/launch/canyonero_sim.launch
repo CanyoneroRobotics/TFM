@@ -1,7 +1,23 @@
 <launch>
 
 	<!-- Practice worlds -->
-	<include file="$(find canyonero_gazebo)/launch/practice_worlds.launch"/>
+	<!--include file="$(find canyonero_gazebo)/launch/practice_worlds.launch"/-->
+
+	<arg name="practice1" default="false"/>
+	<arg name="practice2" default="false"/>
+
+	<!-- Adding empty_world.launch and practice worlds -->
+	<group if="$(arg practice2)">
+		<include file="$(find gazebo_ros)/launch/empty_world.launch">
+			<arg name="world_name" value="$(find canyonero_gazebo)/worlds/practice2.world"/>
+		</include>
+	</group>
+
+	<group unless="$(arg practice2)">
+		<include file="$(find gazebo_ros)/launch/empty_world.launch">
+			<arg name="world_name" value="$(find canyonero_gazebo)/worlds/practice1.world"/>
+		</include>
+	</group>
 
 	<!-- Bring up robot -->
 	<include file="$(find canyonero_gazebo)/launch/canyonero_bringup.launch"/>

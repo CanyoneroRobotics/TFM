@@ -18,7 +18,7 @@ canyonero_velocity_controller:
   # no need to publish a TF based on encoders alone.
   enable_odom_tf: false
 
-  # Husky hardware provides wheel velocities
+  # Canyonero hardware provides wheel velocities
   estimate_velocity_from_position: false
 
   # Wheel separation and radius multipliers
@@ -33,7 +33,7 @@ canyonero_velocity_controller:
   linear:
     x:
       has_velocity_limits    : true
-      max_velocity           : 1.0   # m/s
+      max_velocity           : 1.5   # m/s
       has_acceleration_limits: true
       max_acceleration       : 3.0   # m/s^2
   angular:
